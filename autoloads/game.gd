@@ -11,7 +11,7 @@ signal upnp_completed(error)
 @export var test_players: Array[PlayerDataResource] = [] # first one is server
 @export var use_upnp = false
 
-# [ {id: int, name: string, rol: Rol} ]
+# [ {id: int, name: string} ]
 var players: Array[Statics.PlayerData] = []
 var _thread = null
 
@@ -69,13 +69,17 @@ func set_player_index(index: int) -> void:
 	var player = get_current_player()
 	player.index = index
 	player_index_received.emit()
-	get_tree().root.title += " (Client %d)" % index
+	Debug.add_to_window_title("(Client %d)" % index)
 	Debug.index = index
 
 
 func is_online() -> bool:
 	return not multiplayer.multiplayer_peer is OfflineMultiplayerPeer and \
 		multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED
+
+
+func set_player_id(text: String) -> void:
+	player_id.text = text
 
 
 func _on_connected_to_server() -> void:
