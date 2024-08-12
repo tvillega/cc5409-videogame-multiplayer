@@ -3,14 +3,16 @@ extends Node
 
 var player_index = 1
 
-@onready var timer = $Timer
+@onready var start_game_timer: Timer = $StartGameTimer
 
 func _ready():
 	
-	for test_player in Game.test_players:
+	for i in Game.test_players.size():
+		var test_player = Game.test_players[i]
 		var player = Statics.PlayerData.new(
 			0,
 			test_player.name,
+			i,
 		)
 		Game.players.push_back(player)
 	
@@ -20,11 +22,8 @@ func _ready():
 	if is_multiplayer_authority():
 		multiplayer.peer_connected.connect(_on_peer_connected)
 	
-	
 	if not try_host():
 		try_join()
-	
-	timer.timeout.connect(start_game)
 
 
 func try_host() -> bool:
@@ -32,6 +31,8 @@ func try_host() -> bool:
 	var err = peer.create_server(Statics.PORT, Statics.MAX_CLIENTS)
 	if err == OK:
 		multiplayer.multiplayer_peer = peer
+		get_tree().root.title += " (Server)"
+		start_game_timer.timeout.connect(_on_start_game_timeout)
 	return err == OK
 
 
@@ -49,12 +50,19 @@ func _on_peer_connected(id: int) -> void:
 		for i in Game.players.size():
 			send_player_data_id.rpc(i, Game.players[i].id)
 		player_index += 1
+		start_game_timer.start()
 
 
 @rpc("reliable")
-func send_player_data_id(player_index, id):
-	Game.players[player_index].id = id
+func send_player_data_id(index, id):
+	if multiplayer.get_unique_id() == id and not Game.players[index].id:
+		get_tree().root.title += " (Client %d)" % index
+		Debug.index = index
+	Game.players[index].id = id
 
+func _on_start_game_timeout() -> void:
+	start_game.rpc()
 
+@rpc("reliable", "call_local")
 func start_game() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn")

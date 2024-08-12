@@ -2,21 +2,31 @@ extends Node
 
 signal players_updated
 signal player_updated(id)
-
-@export var multiplayer_test = false
-
-# [ {id: int, name: string, rol: Rol} ]
-var players: Array[Statics.PlayerData] = []
-
-# first one is server
-@export var test_players: Array[PlayerDataResource] = []
+signal player_index_received()
 
 # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
 signal upnp_completed(error)
 
-# Replace this with your own server port number between 1024 and 65535.
-const SERVER_PORT = 5409
-var thread = null
+@export var multiplayer_test = false
+@export var test_players: Array[PlayerDataResource] = [] # first one is server
+@export var use_upnp = false
+
+# [ {id: int, name: string, rol: Rol} ]
+var players: Array[Statics.PlayerData] = []
+var _thread = null
+
+@onready var player_id: Label = $PlayerId
+
+
+func _ready() -> void:
+	if use_upnp:
+		_thread = Thread.new()
+		_thread.start(_upnp_setup.bind(Statics.PORT))
+	
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	if !OS.is_debug_build():
+		multiplayer_test = false
+		player_id.hide()
 
 
 func add_player(player: Statics.PlayerData) -> void:
@@ -43,9 +53,35 @@ func get_current_player() -> Statics.PlayerData:
 	return get_player(multiplayer.get_unique_id())
 
 
+func get_player_index(id: int) -> int:
+	for i in players.size():
+		if players[i].id == id:
+			return i
+	return -1
+
+
+func get_current_player_index() -> int:
+	return get_player_index(multiplayer.get_unique_id())
+
+
+@rpc("reliable")
+func set_player_index(index: int) -> void:
+	var player = get_current_player()
+	player.index = index
+	player_index_received.emit()
+	get_tree().root.title += " (Client %d)" % index
+	Debug.index = index
+
+
 func is_online() -> bool:
 	return not multiplayer.multiplayer_peer is OfflineMultiplayerPeer and \
 		multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED
+
+
+func _on_connected_to_server() -> void:
+	if !OS.is_debug_build():
+		return
+	player_id.text = str(multiplayer.get_unique_id())
 
 
 func _upnp_setup(server_port):
@@ -68,12 +104,8 @@ func _upnp_setup(server_port):
 		
 		emit_signal("upnp_completed", OK)
 
-func _ready():
-	thread = Thread.new()
-	thread.start(_upnp_setup.bind(SERVER_PORT))
-	print("start")
 
 func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.
-	thread.wait_to_finish()
-
+	if _thread:
+		_thread.wait_to_finish()

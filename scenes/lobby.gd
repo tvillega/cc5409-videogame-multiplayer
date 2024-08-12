@@ -1,45 +1,34 @@
 extends MarginContainer
 
-
-
-
-@onready var user = %User
-@onready var host = %Host
-@onready var join = %Join
-
-
-@onready var ip = %IP
-@onready var back_join: Button = %BackJoin
-@onready var confirm_join: Button = %ConfirmJoin
-
-@onready var back_ready: Button = %BackReady
-@onready var ready_button: Button = %Ready
-
-@onready var menus: MarginContainer = %Menus
-
-@onready var start_menu = %StartMenu
-@onready var join_menu = %JoinMenu
-@onready var ready_menu = %ReadyMenu
-
-@onready var players = %Players
-
-@onready var start_timer: Timer = $StartTimer
-
-@onready var time_container: HBoxContainer = %TimeContainer
-@onready var time: Label = %Time
-
-
 @export var lobby_player_scene: PackedScene
 
 # { id: true }
 var status = { 1 : false }
-
 var _menu_stack: Array[Control] = []
 
+@onready var user = %User
+@onready var host = %Host
+@onready var join = %Join
+@onready var ip = %IP
+@onready var back_join: Button = %BackJoin
+@onready var confirm_join: Button = %ConfirmJoin
+@onready var role_a: Button = %RoleA
+@onready var role_b: Button = %RoleB
+@onready var back_ready: Button = %BackReady
+@onready var ready_button: Button = %Ready
+@onready var menus: MarginContainer = %Menus
+@onready var start_menu = %StartMenu
+@onready var join_menu = %JoinMenu
+@onready var ready_menu = %ReadyMenu
+@onready var players = %Players
+@onready var start_timer: Timer = $StartTimer
+@onready var time_container: HBoxContainer = %TimeContainer
+@onready var time: Label = %Time
+
+
 func _ready():
-	
 	if Game.multiplayer_test:
-		get_tree().change_scene_to_file("res://scenes/lobby_test.tscn")
+		get_tree().change_scene_to_file.call_deferred("res://scenes/lobby_test.tscn")
 		return
 	
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
@@ -70,14 +59,14 @@ func _ready():
 	Game.upnp_completed.connect(_on_upnp_completed, 1)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !start_timer.is_stopped():
 		time.text = str(ceil(start_timer.time_left))
 
 
-func _on_upnp_completed(status) -> void:
-	print(status)
-	if status == OK:
+func _on_upnp_completed(error) -> void:
+	print(error)
+	if error == OK:
 		Debug.log("Port Opened", 5)
 	else:
 		Debug.log("Port Error", 5)
@@ -128,13 +117,17 @@ func _on_connection_failed() -> void:
 
 func _on_peer_connected(id: int) -> void:
 	Debug.log("peer_connected %d" % id)
+	if not multiplayer.is_server() and not Game.get_current_player().index:
+		await Game.player_index_received
 	
+	# A peer connected, send it my info
 	send_info.rpc_id(id, Game.get_current_player().to_dict())
-	var local_id = multiplayer.get_unique_id()
 	if multiplayer.is_server():
+		Game.set_player_index.rpc_id(id, status.size())
 		for player_id in status:
 			set_player_ready.rpc_id(id, player_id, status[player_id])
 		status[id] = false
+		
 
 
 func _on_peer_disconnected(id: int) -> void:
@@ -158,6 +151,11 @@ func _add_player(player: Statics.PlayerData) -> void:
 	var lobby_player = lobby_player_scene.instantiate() as UILobbyPlayer
 	players.add_child(lobby_player)
 	lobby_player.setup(player)
+	
+	for child in players.get_children():
+		players.move_child(child, child.player.index)
+	
+	
 
 
 func _remove_player(id: int):
@@ -168,11 +166,9 @@ func _remove_player(id: int):
 	Game.remove_player(id)
 
 
-
-
 @rpc("any_peer", "reliable")
 func send_info(info_dict: Dictionary) -> void:
-	var player = Statics.PlayerData.new(info_dict.id, info_dict.name)
+	var player = Statics.PlayerData.new(info_dict.id, info_dict.name, info_dict.index)
 	_add_player(player)
 
 
@@ -204,7 +200,7 @@ func player_ready(id: int):
 func set_player_ready(id: int, value: bool):
 	for child in players.get_children():
 		var player = child as UILobbyPlayer
-		if player.player_id == id:
+		if player.player.id == id:
 			player.set_ready(value)
 
 
@@ -220,6 +216,7 @@ func starting_game(value: bool):
 
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
+	Game.players.sort_custom(func(a, b): return a.index < b.index)
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 

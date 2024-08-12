@@ -4,26 +4,26 @@ extends MarginContainer
 @onready var player_name: Label = %Name
 @onready var ready_texture: TextureRect = %Ready
 
-var player_id: int
+var player: Statics.PlayerData
 
 
 func _ready() -> void:
 	ready_texture.hide()
 
 
-func setup(player: Statics.PlayerData) -> void:
-	player_id = player.id
-	name = str(player_id)
-	_update(player)
+func setup(value: Statics.PlayerData) -> void:
+	player = value
+	name = str(player.id)
+	_update()
 	Game.player_updated.connect(_on_player_updated)
 
 
 func _on_player_updated(id: int) -> void:
-	if id == player_id:
-		_update(Game.get_player(player_id))
+	if id == player.id:
+		_update()
 
 
-func _update(player: Statics.PlayerData):
+func _update():
 	_set_player_name(player.name)
 
 
