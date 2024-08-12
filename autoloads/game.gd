@@ -69,7 +69,7 @@ func set_player_index(index: int) -> void:
 	var player = get_current_player()
 	player.index = index
 	player_index_received.emit()
-	get_tree().root.title += " (Client %d)" % index
+	Debug.add_to_window_title("(Client %d)" % index)
 	Debug.index = index
 
 
@@ -87,6 +87,10 @@ func set_current_player_role(role: Statics.Role) -> void:
 func is_online() -> bool:
 	return not multiplayer.multiplayer_peer is OfflineMultiplayerPeer and \
 		multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED
+
+
+func set_player_id(text: String) -> void:
+	player_id.text = text
 
 
 func _on_connected_to_server() -> void:

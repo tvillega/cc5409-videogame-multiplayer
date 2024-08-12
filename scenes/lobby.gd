@@ -93,6 +93,9 @@ func _on_host_pressed() -> void:
 	_add_player(player)
 	
 	_go_to_menu(ready_menu)
+	
+	Debug.add_to_window_title("(Server)")
+	Game.set_player_id("1")
 
 
 func _on_join_pressed() -> void:
@@ -134,7 +137,6 @@ func _on_peer_connected(id: int) -> void:
 		for player_id in status:
 			set_player_ready.rpc_id(id, player_id, status[player_id])
 		status[id] = false
-		
 
 
 func _on_peer_disconnected(id: int) -> void:

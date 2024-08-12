@@ -32,7 +32,8 @@ func try_host() -> bool:
 	var err = peer.create_server(Statics.PORT, Statics.MAX_CLIENTS)
 	if err == OK:
 		multiplayer.multiplayer_peer = peer
-		get_tree().root.title += " (Server)"
+		Debug.add_to_window_title("(Server)")
+		Game.set_player_id("1")
 		start_game_timer.timeout.connect(_on_start_game_timeout)
 	return err == OK
 
@@ -57,7 +58,7 @@ func _on_peer_connected(id: int) -> void:
 @rpc("reliable")
 func send_player_data_id(index, id):
 	if multiplayer.get_unique_id() == id and not Game.players[index].id:
-		get_tree().root.title += " (Client %d)" % index
+		Debug.add_to_window_title("(Client %d)" % index)
 		Debug.index = index
 	Game.players[index].id = id
 
