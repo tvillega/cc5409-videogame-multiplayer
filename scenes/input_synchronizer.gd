@@ -2,13 +2,13 @@ class_name  InputSynchronizer
 extends MultiplayerSynchronizer
 
 
-@export var move_input := 0
+@export var directions := Vector2()
 @export var jump := false
 
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		move_input = Input.get_axis("move_left", "move_right")
+		directions = Input.get_vector("left", "right", "up", "down" )
 		if Input.is_action_just_pressed("jump"):
 			jump_broadcast.rpc()
 

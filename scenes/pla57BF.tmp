@@ -18,14 +18,9 @@ offset_bottom = -70.0
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_xudbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_kqd6h")
 
 [node name="InputSynchronizer" parent="." instance=ExtResource("3_je07h")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0

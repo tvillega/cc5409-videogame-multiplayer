@@ -8,6 +8,7 @@ var acceleration = 1000
 var player
 @onready var label: Label = $Label
 @onready var input_synchronizer: InputSynchronizer = $InputSynchronizer
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 func _input(event: InputEvent) -> void:
@@ -18,11 +19,10 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	#if is_multiplayer_authority():
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		
-	var move_input = input_synchronizer.move_input
-	velocity.x = move_toward(velocity.x, speed * move_input, acceleration * delta)
+	
+	var directions = input_synchronizer.directions 
+	velocity = directions * speed
+	look_at(get_global_mouse_position())
 	
 	if is_on_floor() and input_synchronizer.jump:
 		velocity.y = -jump_speed
@@ -38,6 +38,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 	#input_synchronizer.set_multiplayer_authority(player_data.id, false)
 	label.text = player_data.name
 	player = player_data
+	camera_2d.enabled = is_multiplayer_authority()
 
 
 @rpc("authority", "call_local", "unreliable")

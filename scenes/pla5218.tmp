@@ -25,7 +25,3 @@ shape = SubResource("RectangleShape2D_xudbh")
 texture = ExtResource("1_kqd6h")
 
 [node name="InputSynchronizer" parent="." instance=ExtResource("3_je07h")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
