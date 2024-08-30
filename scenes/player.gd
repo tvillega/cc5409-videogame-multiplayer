@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -jump_speed
 	input_synchronizer.jump = false
 	
-	# send_position.rpc(position, velocity)
+	send_position.rpc(position, velocity)
 	move_and_slide()
 
 
