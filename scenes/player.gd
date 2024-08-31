@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 400
 var gravity = 600
-var jump_speed = 500
+var jump_speed = 6000
 var acceleration = 1000
 
 var player
@@ -10,9 +10,8 @@ var player
 @onready var input_synchronizer: InputSynchronizer = $InputSynchronizer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
-func _ready() -> void:
-	anim.play("idle_down")
+@onready var tank_gun: Area2D = $TankGun
+var movement_orient = ""
 	
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -27,7 +26,8 @@ func _physics_process(delta: float) -> void:
 	var directions = input_synchronizer.directions
 	velocity = directions * speed
 	if input_synchronizer.jump:
-		velocity = directions * jump_speed
+		velocity += directions * jump_speed
+	
 	input_synchronizer.jump = false
 	
 	send_position.rpc(position, velocity)
@@ -43,9 +43,9 @@ func setup(player_data: Statics.PlayerData) -> void:
 	camera_2d.enabled = is_multiplayer_authority()
 
 
-@rpc("authority", "call_local", "unreliable")
+@rpc("authority", "call_remote", "unreliable")
 func test():
-	Debug.log("player: %s directions: %s" % [player.name, input_synchronizer.directions])
+	Debug.log("player: %s directions: %s" % [player.name, movement_orient])
 
 @rpc("authority")
 func send_position(pos: Vector2, vel: Vector2) -> void:

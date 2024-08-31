@@ -1,5 +1,7 @@
-extends RigidBody2D
+extends Area2D
 
 
-func _ready() -> void:
-	global_position = Vector2.ONE * 200
+func _physics_process(delta : float) -> void:
+	var direction = Vector2.RIGHT.rotated(rotation)
+	position += direction * 1000 * delta
+	
