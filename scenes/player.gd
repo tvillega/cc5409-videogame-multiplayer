@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		look_at(get_global_mouse_position())
+		pass
 		
 	var directions = input_synchronizer.directions
 	velocity = directions * speed
@@ -45,9 +45,10 @@ func setup(player_data: Statics.PlayerData) -> void:
 
 @rpc("authority", "call_local", "unreliable")
 func test():
-	Debug.log("player: %s directions: %s" % [player.name, player.directions])
+	Debug.log("player: %s directions: %s" % [player.name, input_synchronizer.directions])
 
 @rpc("authority")
 func send_position(pos: Vector2, vel: Vector2) -> void:
 	position = lerp(position, pos, 0.5)
 	velocity = lerp(velocity, vel, 0.5)
+	
