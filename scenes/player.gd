@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
+	tank_gun.set_multiplayer_authority(player_data.id)
 	#input_synchronizer.set_multiplayer_authority(player_data.id, false)
 	label.text = player_data.name
 	player = player_data

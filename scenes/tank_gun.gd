@@ -16,7 +16,8 @@ func setup(id: int)-> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+	if is_multiplayer_authority():
+		look_at(get_global_mouse_position())
 	
 	if gun_synchronizer.shooting:
 		shoot()
