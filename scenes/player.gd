@@ -1,17 +1,25 @@
 extends CharacterBody2D
 
-var speed = 400
-var gravity = 600
-var jump_speed = 6000
-var acceleration = 1000
+@export var speed = 400
+@export var jump_speed = 6000
+@export var acceleration = 1000
 
 var player
+var id
 @onready var label: Label = $Label
+
 @onready var input_synchronizer: InputSynchronizer = $InputSynchronizer
+@onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback : AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
+
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var tank_gun: Area2D = $TankGun
+@onready var tank_gun: Node2D = $TankGun
 var movement_orient = ""
+
 	
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -30,15 +38,17 @@ func _physics_process(delta: float) -> void:
 	
 	input_synchronizer.jump = false
 	
-	send_position.rpc(position, velocity)
 	move_and_slide()
 
 
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
-	#input_synchronizer.set_multiplayer_authority(player_data.id, false)
+	tank_gun.set_multiplayer_authority(player_data.id)
+	input_synchronizer.set_multiplayer_authority(player_data.id)
+	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 	label.text = player_data.name
+	id = player_data.id
 	player = player_data
 	camera_2d.enabled = is_multiplayer_authority()
 
@@ -47,7 +57,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 func test():
 	Debug.log("player: %s directions: %s" % [player.name, movement_orient])
 
-@rpc("authority")
+@rpc("authority", "call_local")
 func send_position(pos: Vector2, vel: Vector2) -> void:
 	position = lerp(position, pos, 0.5)
 	velocity = lerp(velocity, vel, 0.5)

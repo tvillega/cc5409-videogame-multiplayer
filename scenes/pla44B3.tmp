@@ -10,9 +10,6 @@
 radius = 14.1421
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_rf046"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = false
-properties/0/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ep0lo"]
 
@@ -128,6 +125,9 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("2_nlo8y")
+speed = null
+jump_speed = null
+acceleration = null
 
 [node name="Label" type="Label" parent="."]
 offset_left = -58.0

@@ -1,5 +1,5 @@
 class_name TankGun
-extends Area2D
+extends Node2D
 
 @export var player_id : int = -1
 @onready var gun_synchronizer: InputSynchronizer = $InputSynchronizer
@@ -15,12 +15,13 @@ func setup(id: int)-> void:
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
-	look_at(get_global_mouse_position())
+func _process(delta: float) -> void:
+	if is_multiplayer_authority():
+		global_rotation = global_position.direction_to(get_global_mouse_position()).angle()
 	
 	if gun_synchronizer.shooting:
 		shoot()
-	gun_synchronizer.shooting= false
+	gun_synchronizer.shooting = false
 	
 func shoot():
 	const BULLET = preload("res://scenes/bullet.tscn")
