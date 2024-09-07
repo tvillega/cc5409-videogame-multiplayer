@@ -45,8 +45,10 @@ func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	tank_gun.set_multiplayer_authority(player_data.id)
+
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
+
 	label.text = player_data.name
 	id = player_data.id
 	player = player_data

@@ -15,9 +15,11 @@ func setup(id: int)-> void:
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if is_multiplayer_authority():
 		global_rotation = global_position.direction_to(get_global_mouse_position()).angle()
+
 	
 	if gun_synchronizer.shooting:
 		shoot()
