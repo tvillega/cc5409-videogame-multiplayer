@@ -155,6 +155,8 @@ position_smoothing_speed = 10.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2gy4f")
 animation = &"walk_down"
+frame = 3
+frame_progress = 0.548872
 
 [node name="TankGun" parent="." instance=ExtResource("5_3oq3k")]
 
