@@ -22,9 +22,10 @@ func log(message: Variant, seconds: float = 2) -> void:
 
 	if multiplayer.multiplayer_peer is OfflineMultiplayerPeer:
 		print(message)
+		add_message(str(message), seconds)
 	else:
 		print_rich("[b]%s:[/b] " % prefix, message)
-	add_message.rpc("%s: %s" % [prefix, str(message)], seconds)
+		add_message.rpc("%s: %s" % [prefix, str(message)], seconds)
 
 
 @rpc("any_peer", "reliable", "call_local")
