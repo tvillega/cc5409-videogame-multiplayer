@@ -3,12 +3,21 @@ extends CharacterBody2D
 
 var speed = 100
 var player = null
+var count = 0
+
+func velocity_y(count):
+	return sin((PI * count) / 30) * 20 / 2 * PI
+	
+func velocity_x(count):
+	return cos((PI * count) / 30) * 20 / 2 * PI
 
 func _physics_process(delta):
-	velocity = Vector2.ZERO
-	if player:
-		velocity = position.direction_to(player.position) * speed
+	
+	velocity.y = velocity_y(count)
+	velocity.x = velocity_x(count)
+	count += 1
 	move_and_slide()
+	
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():

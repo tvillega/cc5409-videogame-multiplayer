@@ -3,6 +3,7 @@ extends Node2D
 @export var player_scene: PackedScene
 @onready var players: Node2D = $Players
 @onready var markers: Node2D = $Markers
+@onready var npc: Node2D = $npc
 
 func _ready() -> void:
 	for i in Game.players.size():
@@ -12,3 +13,4 @@ func _ready() -> void:
 		player_inst.setup(player_data)
 		player_inst.global_position = markers.get_child(i).global_position
 		
+	
