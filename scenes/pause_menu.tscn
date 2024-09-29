@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cns1h8exunjpj"]
+
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_ephpr"]
+[ext_resource type="Script" path="res://scenes/input_synchronizer.gd" id="2_lkqkj"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_72va7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_peh5k"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ephpr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_72va7")
+script = ExtResource("2_lkqkj")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_peh5k")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

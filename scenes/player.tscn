@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=22 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
+[ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_je07h"]
 [ext_resource type="Texture2D" uid="uid://byumbjif0fwk8" path="res://sprites/Tank/Idle/Down.png" id="3_xm7dh"]
 [ext_resource type="Texture2D" uid="uid://b3ibdgnoopdug" path="res://sprites/Tank/Walk/Down.png" id="4_8i84d"]
@@ -151,6 +152,14 @@ replication_config = SubResource("SceneReplicationConfig_ep0lo")
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("3_cr3x1")]
+visible = false
+offset_left = 13.0
+offset_top = -72.0
+offset_right = 120.0
+offset_bottom = 40.0
+scale = Vector2(1.4, 1.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2gy4f")

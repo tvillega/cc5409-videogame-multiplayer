@@ -7,7 +7,8 @@ extends CharacterBody2D
 var player
 var id
 @onready var label: Label = $Label
-
+@onready var pause_menu: Control = $Camera2D/PauseMenu
+var paused = false
 @onready var input_synchronizer: InputSynchronizer = $InputSynchronizer
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 
@@ -29,7 +30,9 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
-		pass
+		if input_synchronizer.pause:
+			pauseMenu()
+		input_synchronizer.pause = false
 		
 	var directions = input_synchronizer.directions
 	velocity = directions * speed
@@ -63,4 +66,13 @@ func test():
 func send_position(pos: Vector2, vel: Vector2) -> void:
 	position = lerp(position, pos, 0.5)
 	velocity = lerp(velocity, vel, 0.5)
+
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+	else:
+		pause_menu.show()
+		
+	
+	paused = !paused
 	
