@@ -10,3 +10,5 @@ properties/0/replication_mode = 1
 [node name="InputSynchronizer" type="MultiplayerSynchronizer"]
 replication_config = SubResource("SceneReplicationConfig_haiyw")
 script = ExtResource("1_bmnx0")
+jump = true
+shooting = true

@@ -1,4 +1,4 @@
-class_name TankGun
+class_name Gun
 extends Node2D
 
 @export var player_id : int = -1
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	gun_synchronizer.shooting = false
 	
 func shoot():
-	const BULLET = preload("res://scenes/bullet.tscn")
+	const BULLET = preload("res://scenes/guns/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
