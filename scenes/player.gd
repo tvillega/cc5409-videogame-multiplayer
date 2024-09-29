@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 400
 @export var jump_speed = 6000
 @export var acceleration = 1000
+@export var is_tank = true
 
 var player
 var id
@@ -17,7 +18,9 @@ var id
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var tank_gun: Node2D = $TankGun
+@onready var tank_gun: TankGun = $TankGun
+@onready var shot_gun: ShotGun = $ShotGun
+
 var movement_orient = ""
 
 	
@@ -25,7 +28,16 @@ func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("test"):
 			test.rpc()
-			
+		if event.is_action_pressed("swap"):
+			if is_tank:
+				is_tank = false
+				remove_child(tank_gun)
+				add_child(shot_gun)
+			else: 
+				is_tank = true
+				remove_child(shot_gun)
+				add_child(tank_gun)
+				
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -45,7 +57,8 @@ func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
 	tank_gun.set_multiplayer_authority(player_data.id)
-
+	shot_gun.set_multiplayer_authority(player_data.id)
+	remove_child(shot_gun)
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgrt0hjvvygbo"]
 
-[ext_resource type="Script" path="res://scenes/tank_gun.gd" id="1_5hxib"]
+[ext_resource type="Script" path="res://scenes/guns/tank_gun.gd" id="1_5hxib"]
 [ext_resource type="Texture2D" uid="uid://dm11o23uru4a2" path="res://sprites/Weapons/TheUltimateWeaponsPack_Sheet.png" id="1_b3usi"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="2_k6bk0"]
 
