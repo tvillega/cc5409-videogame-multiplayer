@@ -1,35 +1,46 @@
 class_name npc
 extends CharacterBody2D
 
-var speed = 100
-var player = null
-var count = 0
+@export var speed = 200
+@export var acceleration = 500
+@export var player = null
 
-func velocity_y(count):
-	return sin((PI * count) / 30) * 20 / 2 * PI
+var target: Node2D
+
+@onready var detection_area: Area2D = $DetectionArea 
+
+func _ready() -> void:
+	if multiplayer.is_server():
+		detection_area.body_entered.connect(_on_body_entered)
+		detection_area.body_exited.connect(_on_body_exited)
 	
-func velocity_x(count):
-	return cos((PI * count) / 30) * 20 / 2 * PI
-
 func _physics_process(delta):
 	
-	velocity.y = velocity_y(count)
-	velocity.x = velocity_x(count)
-	count += 1
-	move_and_slide()
+	if target:
+		var direction_x = sign(target.global_position.x - global_position.x)
+		var direction_y = sign(target.global_position.y - global_position.y)
+		velocity.x = move_toward(velocity.x, direction_x * speed, acceleration *delta)
+		velocity.y = move_toward(velocity.y, direction_y * speed, acceleration *delta)		
+		move_and_slide()     
 	
+func _on_body_entered(body: Node) -> void:
+	var player = body as Player
+	if player:
+		set_target(player)
+		
+func _on_body_exited(body: Node) -> void:
+	if body == target:
+		set_target(null)
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-	#pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
-
-func _on_DetectRadius_body_entered(body):
-	player = body
-
-func _on_DetectRadius_body_exited(body):
-	player = null
+func set_target(value: Node2D) -> void:
+	target = value
+	var path = target.get_path() if target else null
+	set_target_remote.rpc(path if path else null)
+	
+#func set_target_remote(value: EncodedObjectAsID):
+@rpc("any_peer", "reliable")
+func set_target_remote(target_path):
+	if target_path:
+		target = get_node(target_path)
+	else:
+		target = null
