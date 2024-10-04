@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=23 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
 [ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
@@ -129,6 +129,7 @@ animations = [{
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kjipn"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 12
 script = ExtResource("2_nlo8y")
 
 [node name="Label" type="Label" parent="."]
@@ -139,7 +140,7 @@ offset_bottom = -70.0
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 28)
+position = Vector2(0, 16)
 shape = SubResource("CircleShape2D_47ov1")
 
 [node name="InputSynchronizer" parent="." instance=ExtResource("3_je07h")]

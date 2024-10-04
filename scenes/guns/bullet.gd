@@ -8,3 +8,7 @@ func _physics_process(delta : float) -> void:
 @rpc("call_local")
 func send_position(pos: Vector2, vel: Vector2) -> void:
 	position = lerp(position, pos, 0.5) 
+
+#Colision con murallas
+func _on_body_entered(body: Node2D) -> void: 
+	queue_free() 

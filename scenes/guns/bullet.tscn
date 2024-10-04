@@ -8,6 +8,8 @@ radius = 2.0
 
 [node name="Bullet" type="Area2D"]
 top_level = true
+collision_layer = 16
+collision_mask = 12
 script = ExtResource("1_udq8v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -18,3 +20,7 @@ region_rect = Rect2(0, 432, 18, 5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_xkdmo")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
