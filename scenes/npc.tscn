@@ -46,19 +46,23 @@ animations = [{
 radius = 118.004
 
 [node name="Npc" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
 script = ExtResource("1_klboe")
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
+light_mask = 2
+visibility_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(381, 211)
+light_mask = 2
+visibility_layer = 2
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_jqw1p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(382, 209)
-scale = Vector2(1.5, 1.5)
+light_mask = 2
+visibility_layer = 2
 sprite_frames = SubResource("SpriteFrames_aknnu")
 frame = 1
 frame_progress = 0.322097
@@ -66,6 +70,6 @@ frame_progress = 0.322097
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-visible = false
-position = Vector2(378, 212)
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("CircleShape2D_gw76m")
