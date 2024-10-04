@@ -19,10 +19,6 @@ func _physics_process(delta):
 	if target:
 		Debug.log(target)
 		var direction = global_position.direction_to(target.global_position)
-		#var direction_x = sign(target.global_position.x - global_position.x)
-		#var direction_y = sign(target.global_position.y - global_position.y)
-		#velocity.x = move_toward(velocity.x, direction_x * speed, acceleration *delta)
-		#velocity.y = move_toward(velocity.y, direction_y * speed, acceleration *delta)		
 		velocity = velocity.move_toward(direction * speed, acceleration * delta)
 		move_and_slide()     
 	
