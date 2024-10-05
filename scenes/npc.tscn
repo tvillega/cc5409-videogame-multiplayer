@@ -43,6 +43,8 @@ animations = [{
 }]
 
 [node name="Npc" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 13
 script = ExtResource("1_klboe")
 
 [node name="Node2D" type="Node2D" parent="."]
