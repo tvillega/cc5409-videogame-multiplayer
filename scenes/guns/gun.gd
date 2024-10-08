@@ -30,4 +30,4 @@ func shoot():
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
-	%ShootingPoint.get_parent().get_parent().add_child(new_bullet)
+	%ShootingPoint.add_child(new_bullet)
