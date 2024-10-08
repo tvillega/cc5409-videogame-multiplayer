@@ -1,8 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgcn2wkxkl8ko"]
+[gd_scene load_steps=16 format=3 uid="uid://bgcn2wkxkl8ko"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_7jups"]
+[ext_resource type="Texture2D" uid="uid://bk4ipn2lhvgl7" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Run/Run-Sheet.png" id="3_7a5ni"]
 [ext_resource type="Texture2D" uid="uid://btvoogmixvgj8" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Idle/Idle-Sheet.png" id="3_81s3u"]
 [ext_resource type="Script" path="res://scenes/enemies/skel.gd" id="3_v70pq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ers3m"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krp2v"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kkvu"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqtdc"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn0vc"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stphm"]
+atlas = ExtResource("3_7a5ni")
+region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wgcf8"]
 atlas = ExtResource("3_81s3u")
@@ -24,6 +49,29 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ers3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krp2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kkvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqtdc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn0vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stphm")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wgcf8")
 }, {
 "duration": 1.0,
@@ -36,7 +84,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1w4jh")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -44,6 +92,7 @@ animations = [{
 script = ExtResource("3_v70pq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
+scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_k0xoy")
-frame_progress = 0.441815
+animation = &"idle"
 speed_scale = 1.5
