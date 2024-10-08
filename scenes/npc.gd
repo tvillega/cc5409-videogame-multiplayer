@@ -1,4 +1,4 @@
-class_name npc
+class_name Npc
 extends CharacterBody2D
 
 @export var speed = 200
@@ -17,7 +17,6 @@ func _ready() -> void:
 func _physics_process(delta):
 	
 	if target:
-		Debug.log(target)
 		var direction = global_position.direction_to(target.global_position)
 		velocity = velocity.move_toward(direction * speed, acceleration * delta)
 		move_and_slide()     
