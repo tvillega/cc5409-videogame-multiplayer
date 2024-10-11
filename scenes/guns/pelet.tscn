@@ -8,6 +8,8 @@ size = Vector2(6, 6)
 
 [node name="Pelet" type="Area2D"]
 top_level = true
+collision_layer = 16
+collision_mask = 12
 script = ExtResource("1_bg8xk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

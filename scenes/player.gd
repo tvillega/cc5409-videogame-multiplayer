@@ -30,15 +30,6 @@ func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("test"):
 			test.rpc()
-		if event.is_action_pressed("swap"):
-			if is_tank:
-				is_tank = false
-				remove_child(tank_gun)
-				add_child(shot_gun)
-			else: 
-				is_tank = true
-				remove_child(shot_gun)
-				add_child(tank_gun)
 				
 
 func _physics_process(delta: float) -> void:
@@ -53,6 +44,16 @@ func _physics_process(delta: float) -> void:
 		velocity += directions * jump_speed
 	
 	input_synchronizer.jump = false
+	if input_synchronizer.swap:
+		if is_tank:
+			is_tank = false
+			remove_child(tank_gun)
+			add_child(shot_gun)
+		else: 
+			is_tank = true
+			remove_child(shot_gun)
+			add_child(tank_gun)
+	input_synchronizer.swap = false
 	
 	move_and_slide()
 

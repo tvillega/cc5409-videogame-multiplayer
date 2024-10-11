@@ -25,7 +25,8 @@ func _process(delta: float) -> void:
 		shoot()
 	gun_synchronizer.shooting = false
 	
-func shoot():
+	
+func shoot() -> void:
 	const BULLET = preload("res://scenes/guns/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootingPoint.global_position
