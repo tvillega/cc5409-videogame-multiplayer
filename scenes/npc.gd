@@ -18,8 +18,10 @@ func _physics_process(delta):
 	
 	if target:
 		var direction = global_position.direction_to(target.global_position)
-		velocity = velocity.move_toward(direction * speed, acceleration * delta)
-		move_and_slide()     
+		var distance = global_position.distance_to(target.global_position)
+		if distance > 50:
+			velocity = velocity.move_toward(direction * speed, acceleration * delta)
+			move_and_slide()
 	
 func _on_body_entered(body: Node) -> void:
 	var player = body as Player
