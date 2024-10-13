@@ -1,3 +1,4 @@
+class_name Bullet
 extends Area2D
 
 @onready var hitbox = $Hitbox	
@@ -22,4 +23,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 	queue_free() # Replace with function body.
 
 func _on_damage_dealt() -> void:
-	Debug.log("We made damage")
+	Debug.log("Pelet made damage")

@@ -105,9 +105,6 @@ sprite_frames = SubResource("SpriteFrames_k0xoy")
 animation = &"idle"
 speed_scale = 1.5
 
-[node name="DetectionArea" parent="." index="3"]
-visible = false
-
 [node name="Hurtbox" type="Area2D" parent="." index="4"]
 script = ExtResource("5_7kcsi")
 
