@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=24 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
 [ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3ibdgnoopdug" path="res://sprites/Tank/Walk/Down.png" id="4_8i84d"]
 [ext_resource type="PackedScene" uid="uid://bgrt0hjvvygbo" path="res://scenes/guns/TankGun.tscn" id="5_3oq3k"]
 [ext_resource type="PackedScene" uid="uid://b57xayigiyjld" path="res://scenes/guns/ShotGun.tscn" id="6_nddba"]
+[ext_resource type="Script" path="res://scenes/stats.gd" id="8_wklth"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47ov1"]
 radius = 14.1421
@@ -178,3 +179,6 @@ frame_progress = 0.548872
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_kjipn")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("8_wklth")
