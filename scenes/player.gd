@@ -90,3 +90,10 @@ func pauseMenu():
 	
 	paused = !paused
 	
+func take_damage(damage: int) -> void:
+	notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
+	
+
+@rpc("any_peer", "call_local", "reliable")
+func notify_take_damage(damage:int) -> void:
+	Debug.log("damaged received: %d" % damage)
