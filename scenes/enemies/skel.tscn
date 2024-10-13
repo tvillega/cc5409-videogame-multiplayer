@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bgcn2wkxkl8ko"]
+[gd_scene load_steps=20 format=3 uid="uid://bgcn2wkxkl8ko"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_7jups"]
 [ext_resource type="Texture2D" uid="uid://bk4ipn2lhvgl7" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Run/Run-Sheet.png" id="3_7a5ni"]
 [ext_resource type="Texture2D" uid="uid://btvoogmixvgj8" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Idle/Idle-Sheet.png" id="3_81s3u"]
 [ext_resource type="Script" path="res://scenes/enemies/skel.gd" id="3_v70pq"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="5_7kcsi"]
+[ext_resource type="Script" path="res://components/hitbox.gd" id="6_xo5rd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ers3m"]
 atlas = ExtResource("3_7a5ni")
@@ -92,6 +93,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bs3p"]
 size = Vector2(12.5, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntor2"]
+size = Vector2(60, 69)
+
 [node name="Npc" instance=ExtResource("1_7jups")]
 script = ExtResource("3_v70pq")
 
@@ -111,3 +115,10 @@ script = ExtResource("5_7kcsi")
 position = Vector2(-3.5, 1)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_2bs3p")
+
+[node name="Hitbox" type="Area2D" parent="." index="5"]
+script = ExtResource("6_xo5rd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-3, 0.5)
+shape = SubResource("RectangleShape2D_ntor2")

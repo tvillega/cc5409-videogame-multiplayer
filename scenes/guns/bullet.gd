@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var hitbox = $Hitbox	
+
 func _physics_process(delta : float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation)
 	position += direction * 1000 * delta
@@ -14,4 +16,10 @@ func _on_body_entered(body: Node2D) -> void:
 
 #Colision con enemigos
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	var hitbox = body as Hitbox
+	if hitbox:
+		hitbox.damage_dealt.connect(_on_damage_dealt)
 	queue_free() # Replace with function body.
+
+func _on_damage_dealt() -> void:
+	Debug.log("We made damage")
