@@ -1,6 +1,8 @@
 class_name Npc
 extends CharacterBody2D
 
+@onready var _animated_sprite : AnimatedSprite2D = $Sprite/AnimatedSprite2D
+
 @export var speed = 200
 @export var acceleration = 500
 @export var player = null
@@ -8,6 +10,13 @@ extends CharacterBody2D
 var target: Node2D
 
 @onready var detection_area: Area2D = $DetectionArea 
+
+func _process(_delta):
+	if target:
+		_animated_sprite.play("chase")
+		
+	else:
+		_animated_sprite.play("idle")
 
 func _ready() -> void:
 	if multiplayer.is_server():
@@ -44,3 +53,6 @@ func set_target_remote(target_path):
 		target = get_node(target_path)
 	else:
 		target = null
+
+func take_damage(damage: int):
+	Debug.log("NPC says auch! -%d" % damage)
