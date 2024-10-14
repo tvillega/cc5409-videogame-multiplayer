@@ -1,7 +1,9 @@
 class_name Stats
 extends Node
 
-@export var health := 100
+@export var health := 100 :
+	set(value):
+		health = clamp(value, 0, max_health)
 @export var max_health := 100
 
 

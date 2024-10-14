@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_speed = 6000
 @export var acceleration = 1000
 @export var is_tank = true
+@export var dead = false
 
 var player
 var id
@@ -22,9 +23,17 @@ var paused = false
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var tank_gun: TankGun = $TankGun
 @onready var shot_gun: ShotGun = $ShotGun
+@onready var stats = $Stats
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var movement_orient = ""
 
+func _process(_delta):
+	if stats.health == 0 and not dead:
+		dead = true
+		animated_sprite_2d.play("death")
+	else: if not dead:
+		animated_sprite_2d.play("idle_down")
 	
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -37,24 +46,25 @@ func _physics_process(delta: float) -> void:
 		if input_synchronizer.pause:
 			pauseMenu()
 		input_synchronizer.pause = false
+	
+	if not dead:
+		var directions = input_synchronizer.directions
+		velocity = directions * speed
+		if input_synchronizer.jump:
+			velocity += directions * jump_speed
 		
-	var directions = input_synchronizer.directions
-	velocity = directions * speed
-	if input_synchronizer.jump:
-		velocity += directions * jump_speed
-	
-	input_synchronizer.jump = false
-	if input_synchronizer.swap:
-		if is_tank:
-			is_tank = false
-			remove_child(tank_gun)
-			add_child(shot_gun)
-		else: 
-			is_tank = true
-			remove_child(shot_gun)
-			add_child(tank_gun)
-	input_synchronizer.swap = false
-	
+		input_synchronizer.jump = false
+		if input_synchronizer.swap:
+			if is_tank:
+				is_tank = false
+				remove_child(tank_gun)
+				add_child(shot_gun)
+			else: 
+				is_tank = true
+				remove_child(shot_gun)
+				add_child(tank_gun)
+		input_synchronizer.swap = false
+		
 	move_and_slide()
 
 
@@ -93,8 +103,6 @@ func pauseMenu():
 	
 func take_damage(damage: int) -> void:
 	#notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
+	stats.health -= damage
 	Debug.log("Player says auch! -%d" % damage)
-
-@rpc("any_peer", "call_local", "reliable")
-func notify_take_damage(damage:int) -> void:
-	Debug.log("damaged received: %d" % damage)
+	Debug.log("Player health at %d" % stats.health)

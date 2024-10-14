@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=32 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
 [ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_je07h"]
 [ext_resource type="Texture2D" uid="uid://byumbjif0fwk8" path="res://sprites/Tank/Idle/Down.png" id="3_xm7dh"]
 [ext_resource type="Texture2D" uid="uid://b3ibdgnoopdug" path="res://sprites/Tank/Walk/Down.png" id="4_8i84d"]
+[ext_resource type="Texture2D" uid="uid://carye8ux1xcgx" path="res://sprites/Tank/Die/Down.png" id="4_trviw"]
 [ext_resource type="PackedScene" uid="uid://bgrt0hjvvygbo" path="res://scenes/guns/TankGun.tscn" id="5_3oq3k"]
 [ext_resource type="PackedScene" uid="uid://b57xayigiyjld" path="res://scenes/guns/ShotGun.tscn" id="6_nddba"]
 [ext_resource type="Script" path="res://scenes/stats.gd" id="8_wklth"]
@@ -19,6 +20,26 @@ properties/0/spawn = false
 properties/0/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ep0lo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbfba"]
+atlas = ExtResource("4_trviw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxuwn"]
+atlas = ExtResource("4_trviw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vujo"]
+atlas = ExtResource("4_trviw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vvu"]
+atlas = ExtResource("4_trviw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhwkd"]
+atlas = ExtResource("4_trviw")
+region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f5ai"]
 atlas = ExtResource("3_xm7dh")
@@ -64,6 +85,26 @@ region = Rect2(192, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vbfba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxuwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vujo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64vvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhwkd")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8f5ai")
 }, {
 "duration": 1.0,
@@ -83,11 +124,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation_1",
 "speed": 5.0
 }, {
 "frames": [],
@@ -131,7 +167,7 @@ animations = [{
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kjipn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4qml"]
-size = Vector2(48, 64)
+size = Vector2(28, 29)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 12
@@ -170,9 +206,9 @@ scale = Vector2(1.4, 1.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2gy4f")
-animation = &"walk_down"
-frame = 3
-frame_progress = 0.548872
+animation = &"death"
+frame = 4
+frame_progress = 1.0
 
 [node name="TankGun" parent="." instance=ExtResource("5_3oq3k")]
 
@@ -191,5 +227,7 @@ script = ExtResource("8_wklth")
 script = ExtResource("9_qugai")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-1, 5)
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_d4qml")
