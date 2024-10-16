@@ -106,3 +106,9 @@ func take_damage(damage: int) -> void:
 	stats.health -= damage
 	Debug.log("Player says auch! -%d" % damage)
 	Debug.log("Player health at %d" % stats.health)
+
+@rpc("authority", "call_local")
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "death":
+		get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
+	

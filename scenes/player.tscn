@@ -20,6 +20,9 @@ properties/0/spawn = false
 properties/0/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ep0lo"]
+properties/0/path = NodePath(".:dead")
+properties/0/spawn = false
+properties/0/replication_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbfba"]
 atlas = ExtResource("4_trviw")
@@ -231,3 +234,6 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_d4qml")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
