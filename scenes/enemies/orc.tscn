@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmolchx0spusu"]
+[gd_scene load_steps=22 format=3 uid="uid://cmolchx0spusu"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_q0yo4"]
 [ext_resource type="Script" path="res://scenes/enemies/orc.gd" id="2_c7sbn"]
@@ -90,8 +90,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5e4jj"]
+radius = 15.6749
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kqwp"]
-radius = 118.004
+radius = 228.265
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxivr"]
 size = Vector2(12.5, 31)
@@ -108,13 +111,20 @@ sprite_frames = SubResource("SpriteFrames_tkr2n")
 animation = &"chase"
 speed_scale = 1.5
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 5)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_5e4jj")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-2, 5)
 shape = SubResource("CircleShape2D_3kqwp")
 
-[node name="Hurtbox" parent="." index="4"]
+[node name="Hurtbox" parent="." index="3"]
 script = ExtResource("5_fo756")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -122,7 +132,7 @@ position = Vector2(-3.5, 1)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_kxivr")
 
-[node name="Hitbox" parent="." index="5"]
+[node name="Hitbox" parent="." index="4"]
 script = ExtResource("6_kj7v6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
