@@ -62,4 +62,6 @@ func set_target_remote(target_path):
 ## This functions are called through signals by other entities
 ##
 func take_damage(damage: int):
-	Debug.log("NPC says auch! -%d" % damage)
+	# Avoid sending text twice
+	if multiplayer.is_server():
+		Debug.log("NPC says auch! -%d" % damage)

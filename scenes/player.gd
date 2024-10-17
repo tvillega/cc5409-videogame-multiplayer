@@ -104,5 +104,7 @@ func pauseMenu():
 func take_damage(damage: int) -> void:
 	#notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
 	stats.health -= damage
-	Debug.log("Player says auch! -%d" % damage)
-	Debug.log("Player health at %d" % stats.health)
+	# Avoid sending text twice
+	if multiplayer.is_server():
+		Debug.log("Player says auch! -%d" % damage)
+		Debug.log("Player health at %d" % stats.health)
