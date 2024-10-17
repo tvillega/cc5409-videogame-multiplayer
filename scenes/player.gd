@@ -21,8 +21,8 @@ var paused = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var tank_gun: TankGun = $TankGun
-@onready var shot_gun: ShotGun = $ShotGun
+@onready var pistol: Firearm = $Pistol
+@onready var shotgun: Firearm = $Shotgun
 @onready var stats = $Stats
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -57,12 +57,12 @@ func _physics_process(delta: float) -> void:
 		if input_synchronizer.swap:
 			if is_tank:
 				is_tank = false
-				remove_child(tank_gun)
-				add_child(shot_gun)
-			else: 
+				remove_child(pistol)
+				add_child(shotgun)
+			else:
 				is_tank = true
-				remove_child(shot_gun)
-				add_child(tank_gun)
+				remove_child(shotgun)
+				add_child(pistol)
 		input_synchronizer.swap = false
 		
 	move_and_slide()
@@ -71,9 +71,9 @@ func _physics_process(delta: float) -> void:
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
-	tank_gun.set_multiplayer_authority(player_data.id)
-	shot_gun.set_multiplayer_authority(player_data.id)
-	remove_child(shot_gun)
+	pistol.set_multiplayer_authority(player_data.id)
+	shotgun.set_multiplayer_authority(player_data.id)
+	remove_child(shotgun)
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 

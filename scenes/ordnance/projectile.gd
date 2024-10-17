@@ -1,7 +1,7 @@
-class_name Bullet
+class_name Projectile
 extends Area2D
 
-@onready var hitbox = $Hitbox	
+@onready var hitbox = $Hitbox
 
 func _physics_process(delta : float) -> void:
 	var direction = Vector2.RIGHT.rotated(rotation)
@@ -23,4 +23,4 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 	queue_free() # Replace with function body.
 
 func _on_damage_dealt() -> void:
-	Debug.log("Pelet made damage")
+	Debug.log("Projectile made damage")

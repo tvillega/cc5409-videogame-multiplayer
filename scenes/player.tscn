@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://byumbjif0fwk8" path="res://sprites/Tank/Idle/Down.png" id="3_xm7dh"]
 [ext_resource type="Texture2D" uid="uid://b3ibdgnoopdug" path="res://sprites/Tank/Walk/Down.png" id="4_8i84d"]
 [ext_resource type="Texture2D" uid="uid://carye8ux1xcgx" path="res://sprites/Tank/Die/Down.png" id="4_trviw"]
-[ext_resource type="PackedScene" uid="uid://bgrt0hjvvygbo" path="res://scenes/guns/TankGun.tscn" id="5_3oq3k"]
-[ext_resource type="PackedScene" uid="uid://b57xayigiyjld" path="res://scenes/guns/ShotGun.tscn" id="6_nddba"]
+[ext_resource type="PackedScene" uid="uid://bvaq6d4egho2q" path="res://scenes/ordnance/guns/pistol.tscn" id="7_06oed"]
 [ext_resource type="Script" path="res://scenes/stats.gd" id="8_wklth"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
+[ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47ov1"]
 radius = 14.1421
@@ -207,13 +207,10 @@ scale = Vector2(1.4, 1.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2gy4f")
-animation = &"death"
-frame = 4
-frame_progress = 1.0
+animation = &"idle_down"
 
-[node name="TankGun" parent="." instance=ExtResource("5_3oq3k")]
-
-[node name="ShotGun" parent="." instance=ExtResource("6_nddba")]
+[node name="Pistol" parent="." instance=ExtResource("7_06oed")]
+position = Vector2(20, -10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -232,3 +229,6 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_d4qml")
+
+[node name="Shotgun" parent="." instance=ExtResource("10_ot44p")]
+position = Vector2(-3, -3)
