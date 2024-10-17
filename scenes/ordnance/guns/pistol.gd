@@ -6,4 +6,6 @@ func shoot() -> void:
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %PistolShootingPoint.global_position
 	new_bullet.global_rotation = %PistolShootingPoint.global_rotation
-	%PistolShootingPoint.get_parent().get_parent().add_child(new_bullet)
+	var world = get_tree().current_scene
+	world.add_child(new_bullet)
+	#%PistolShootingPoint.get_parent().get_parent().add_child(new_bullet)
