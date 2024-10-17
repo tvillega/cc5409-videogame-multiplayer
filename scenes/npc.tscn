@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4w8b3lq6a1gs"]
+[gd_scene load_steps=3 format=3 uid="uid://c4w8b3lq6a1gs"]
 
 [ext_resource type="Script" path="res://scenes/npc.gd" id="1_klboe"]
-[ext_resource type="Script" path="res://components/hurtbox.gd" id="2_epll6"]
-[ext_resource type="Script" path="res://components/hitbox.gd" id="3_5ljvj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqw1p"]
 radius = 15.6749
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gw76m"]
-radius = 118.004
 
 [node name="Npc" type="CharacterBody2D"]
 light_mask = 2
@@ -33,14 +28,6 @@ scale = Vector2(1.6, 1.6)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-2, 5)
-shape = SubResource("CircleShape2D_gw76m")
-
 [node name="Hurtbox" type="Area2D" parent="."]
-script = ExtResource("2_epll6")
 
 [node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("3_5ljvj")
