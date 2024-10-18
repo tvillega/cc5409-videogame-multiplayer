@@ -14,16 +14,16 @@ radius = 3.0
 [node name="Bullet" instance=ExtResource("1_hwlog")]
 script = ExtResource("2_dc4ce")
 
+[node name="WorldCollision" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(7, 0)
+shape = SubResource("RectangleShape2D_j1fu5")
+
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 texture = ExtResource("2_mijo5")
 region_enabled = true
 region_rect = Rect2(0, 432, 18, 5)
 
-[node name="WorldCollision" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(7, 0)
-shape = SubResource("RectangleShape2D_j1fu5")
-
-[node name="Hitbox" parent="." index="2"]
+[node name="Hitbox" parent="." index="3"]
 script = ExtResource("3_ahtsr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]

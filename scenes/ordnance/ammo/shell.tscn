@@ -13,14 +13,17 @@ radius = 4.0
 [node name="Shell" instance=ExtResource("1_dogsq")]
 script = ExtResource("1_st8h6")
 
+[node name="WorldCollision" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wup0w")
+
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_iien0")
 region_enabled = true
 region_rect = Rect2(66.2664, 456.908, 3.21045, 3.04489)
 
-[node name="WorldCollision" type="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_wup0w")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_xayp2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

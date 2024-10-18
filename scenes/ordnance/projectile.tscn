@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://scenes/ordnance/projectile.gd" id="1_a47k8"]
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 16
+collision_mask = 12
 script = ExtResource("1_a47k8")
 
 [node name="Sprite" type="Node2D" parent="."]
