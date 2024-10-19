@@ -6,7 +6,6 @@ extends MultiplayerSynchronizer
 @export var jump := false
 @export var shooting := false
 @export var pause := false
-@export var swap := false
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
@@ -21,8 +20,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("pause"):
 			pause_broadcast.rpc()
 		
-		if Input.is_action_just_pressed("swap"):
-			swap_broadcast.rpc()
+		
 
 
 @rpc("call_local")
@@ -36,7 +34,3 @@ func shoot_broadcast() -> void:
 @rpc("call_local")	
 func pause_broadcast() -> void:
 	pause = true
-
-@rpc("call_local")
-func swap_broadcast() -> void:
-	swap = true

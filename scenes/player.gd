@@ -21,8 +21,7 @@ var paused = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var pistol: Firearm = $Pistol
-@onready var shotgun: Firearm = $Shotgun
+
 @onready var stats = $Stats
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -54,16 +53,7 @@ func _physics_process(delta: float) -> void:
 			velocity += directions * jump_speed
 		
 		input_synchronizer.jump = false
-		if input_synchronizer.swap:
-			if is_tank:
-				is_tank = false
-				remove_child(pistol)
-				add_child(shotgun)
-			else:
-				is_tank = true
-				remove_child(shotgun)
-				add_child(pistol)
-		input_synchronizer.swap = false
+		
 		
 	move_and_slide()
 
@@ -71,9 +61,6 @@ func _physics_process(delta: float) -> void:
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
-	pistol.set_multiplayer_authority(player_data.id)
-	shotgun.set_multiplayer_authority(player_data.id)
-	remove_child(shotgun)
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 

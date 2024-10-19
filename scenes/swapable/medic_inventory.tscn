@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://m77tg5hmy7j5"]
+
+[ext_resource type="PackedScene" uid="uid://b1k5su5sfar6a" path="res://scenes/swapable/Inventory.tscn" id="1_0qa8l"]
+[ext_resource type="Script" path="res://scenes/swapable/medic_inventory.gd" id="2_w1vxe"]
+[ext_resource type="PackedScene" uid="uid://bvaq6d4egho2q" path="res://scenes/ordnance/guns/pistol.tscn" id="3_civgs"]
+
+[node name="MedicInventory" instance=ExtResource("1_0qa8l")]
+script = ExtResource("2_w1vxe")
+
+[node name="Pistol" parent="." index="1" instance=ExtResource("3_civgs")]
