@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=35 format=3 uid="uid://bkvdcld6sp21y"]
 
+[ext_resource type="PackedScene" uid="uid://dmjaytasbi03v" path="res://scenes/ui/hud.tscn" id="2_dknyr"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
 [ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_je07h"]
@@ -10,6 +11,12 @@
 [ext_resource type="Script" path="res://scenes/stats.gd" id="8_wklth"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
 [ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxi3p"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfimg"]
+bg_color = Color(2.16588e-06, 0.59681, 0.305655, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47ov1"]
 radius = 14.1421
@@ -175,6 +182,18 @@ size = Vector2(28, 29)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 12
 script = ExtResource("2_nlo8y")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = 34.0
+offset_right = 25.0
+offset_bottom = 39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nxi3p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xfimg")
+show_percentage = false
+
+[node name="HUD" parent="." instance=ExtResource("2_dknyr")]
+visible = false
 
 [node name="Label" type="Label" parent="."]
 offset_left = -58.0

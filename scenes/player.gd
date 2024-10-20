@@ -24,10 +24,19 @@ var paused = false
 @onready var pistol: Firearm = $Pistol
 @onready var shotgun: Firearm = $Shotgun
 @onready var stats = $Stats
+@onready var hud: HUD = $HUD
+@onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 var movement_orient = ""
 
+func _ready() ->  void:
+	stats.health_changed.connect(_on_health_changed)
+	hud.health = stats.health
+	hud.visible = is_multiplayer_authority()
+	health_bar.value = stats.health
+	#health_bar.visible = not is_multiplayer_authority()
+	
 func _process(_delta):
 	if stats.health <= 0 and not dead:
 		playerDeath.rpc()
@@ -118,4 +127,10 @@ func playerDeath() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "death":
 		get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
+		
+func _on_health_changed(health) -> void:
+	hud.health = health
+	health_bar.value = health
+	if health < 0:
+		pass
 	
