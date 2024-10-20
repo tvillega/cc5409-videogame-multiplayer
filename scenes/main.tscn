@@ -335,7 +335,23 @@ collision_mask = 25
 polygon = PackedVector2Array(140, 173, 140, 467, 1012, 466, 1011, 174, 725, 172, 724, 130, 1197, 132, 1197, 1467, 1060, 1468, 1059, 1072, 193, 1070, 189, 1857, 1059, 1862, 1060, 1574, 1195, 1571, 1196, 3051, 773, 3051, 772, 2966, 1060, 2961, 1059, 2333, 426, 2332, 431, 2961, 671, 2966, 669, 3051, 620, 3051, 619, 3158, 1197, 3156, 1195, 3252, 1390, 3252, 1385, 3541, 1686, 3539, 1685, 3250, 1923, 3253, 1923, 3155, 2500, 3152, 2499, 3051, 2451, 3050, 2452, 2965, 2740, 2965, 2737, 2327, 2109, 2331, 2110, 2960, 2347, 2962, 2347, 3053, 1924, 3048, 1925, 1573, 2108, 1570, 2110, 1855, 3269, 1859, 3268, 1069, 2110, 1068, 2110, 1470, 1926, 1467, 1924, 131, 2444, 133, 2446, 173, 2107, 170, 2109, 469, 2980, 465, 2978, 174, 2549, 173, 2547, 27, 573, 29, 573, 129, 620, 130, 622, 174, 151, 170, 206, -281, 2897, -271, 3233, 139, 3536, 1179, 3437, 2221, 2958, 3266, 1879, 3857, 224, 3579, -1, 2456, -80, 965, 157, 105, 151, 170, 140, 173)
 
 [node name="Skel" parent="." instance=ExtResource("4_rgulj")]
-position = Vector2(2893, 1772)
+position = Vector2(1804, 1087)
+speed = 200
+
+[node name="Skel9" parent="." instance=ExtResource("4_rgulj")]
+position = Vector2(2541, 2732)
+speed = 200
+
+[node name="Skel8" parent="." instance=ExtResource("4_rgulj")]
+position = Vector2(880, 2706)
+speed = 200
+
+[node name="Skel7" parent="." instance=ExtResource("4_rgulj")]
+position = Vector2(1515, 2094)
+speed = 200
+
+[node name="Skel6" parent="." instance=ExtResource("4_rgulj")]
+position = Vector2(1572, 2516)
 speed = 200
 
 [node name="Skel2" parent="." instance=ExtResource("4_rgulj")]
@@ -347,7 +363,7 @@ position = Vector2(3003, 1331)
 speed = 200
 
 [node name="Skel4" parent="." instance=ExtResource("4_rgulj")]
-position = Vector2(2952, 1602)
+position = Vector2(3067, 1697)
 speed = 200
 
 [node name="Skel5" parent="." instance=ExtResource("4_rgulj")]
@@ -355,7 +371,27 @@ position = Vector2(2764, 1416)
 speed = 200
 
 [node name="Orc" parent="." instance=ExtResource("5_gnl5r")]
-position = Vector2(678, 1641)
+position = Vector2(1329, 821)
+speed = 200
+
+[node name="Orc9" parent="." instance=ExtResource("5_gnl5r")]
+position = Vector2(2329, 2570)
+speed = 200
+
+[node name="Orc8" parent="." instance=ExtResource("5_gnl5r")]
+position = Vector2(587, 2599)
+speed = 200
+
+[node name="Orc5" parent="." instance=ExtResource("5_gnl5r")]
+position = Vector2(621, 1602)
+speed = 200
+
+[node name="Orc6" parent="." instance=ExtResource("5_gnl5r")]
+position = Vector2(1789, 2208)
+speed = 200
+
+[node name="Orc7" parent="." instance=ExtResource("5_gnl5r")]
+position = Vector2(1294, 2278)
 speed = 200
 
 [node name="Orc2" parent="." instance=ExtResource("5_gnl5r")]
