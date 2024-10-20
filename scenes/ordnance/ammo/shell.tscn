@@ -24,6 +24,8 @@ region_rect = Rect2(66.2664, 456.908, 3.21045, 3.04489)
 shape = SubResource("RectangleShape2D_wup0w")
 
 [node name="Hitbox" parent="." index="2"]
+collision_layer = 16
+collision_mask = 12
 script = ExtResource("4_7le83")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]

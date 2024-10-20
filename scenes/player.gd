@@ -30,9 +30,7 @@ var movement_orient = ""
 
 func _process(_delta):
 	if stats.health <= 0 and not dead:
-		velocity = Vector2(0, 0)
-		dead = true
-		animated_sprite_2d.play("death")
+		playerDeath.rpc()
 	else: if not dead:
 		animated_sprite_2d.play("idle_down")
 	
@@ -110,7 +108,13 @@ func take_damage(damage: int) -> void:
 		Debug.log("Player says auch! -%d" % damage)
 		Debug.log("Player health at %d" % stats.health)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_local", "reliable")	
+func playerDeath() -> void:
+	velocity = Vector2(0, 0)
+	dead = true
+	animated_sprite_2d.play("death")
+
+@rpc("any_peer", "call_local", "reliable")
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "death":
 		get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
