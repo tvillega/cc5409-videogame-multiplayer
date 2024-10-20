@@ -29,7 +29,7 @@ var paused = false
 var movement_orient = ""
 
 func _process(_delta):
-	if stats.health == 0 and not dead:
+	if stats.health <= 0 and not dead:
 		velocity = Vector2(0, 0)
 		dead = true
 		animated_sprite_2d.play("death")
