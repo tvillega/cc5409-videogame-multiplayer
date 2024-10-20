@@ -24,10 +24,18 @@ var paused = false
 @onready var pistol: Firearm = $Pistol
 @onready var shotgun: Firearm = $Shotgun
 @onready var stats = $Stats
+@onready var hud: HUD = $HUD
+@onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 var movement_orient = ""
 
+func _ready() ->  void:
+	stats.health_changed.connect(func(health): hud.health = health)
+	hud.health = stats.health
+	hud.visible = is_multiplayer_authority()
+	health_bar.visible = not is_multiplayer_authority()
+	
 func _process(_delta):
 	if stats.health <= 0 and not dead:
 		velocity = Vector2(0, 0)
