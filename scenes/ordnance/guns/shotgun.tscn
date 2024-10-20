@@ -36,4 +36,4 @@ replication_config = SubResource("SceneReplicationConfig_cff2g")
 
 [node name="ShotgunShootingPoint" type="Marker2D" parent="." index="5"]
 unique_name_in_owner = true
-position = Vector2(3, 4)
+position = Vector2(23, 3)

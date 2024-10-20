@@ -18,6 +18,7 @@ script = ExtResource("2_p2bjw")
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 scale = Vector2(2, 2)
 texture = ExtResource("2_eplqj")
+offset = Vector2(10, 0)
 flip_h = true
 region_enabled = true
 region_rect = Rect2(47.7859, 215.805, 8.54418, 7.50221)
@@ -35,4 +36,4 @@ replication_config = SubResource("SceneReplicationConfig_wxjr3")
 
 [node name="PistolShootingPoint" type="Marker2D" parent="." index="5"]
 unique_name_in_owner = true
-position = Vector2(9, -6)
+position = Vector2(28, -6)

@@ -1,6 +1,9 @@
 class_name Pistol
 extends Firearm
 
+func _ready():
+	global_position += Vector2(1,1)
+
 func shoot() -> void:
 	const BULLET = preload("res://scenes/ordnance/ammo/bullet.tscn")
 	var new_bullet = BULLET.instantiate()
