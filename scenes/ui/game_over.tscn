@@ -36,6 +36,7 @@ theme_override_font_sizes/font_size = 30
 text = "A buddy has died"
 
 [node name="MenuButton" type="Button" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
