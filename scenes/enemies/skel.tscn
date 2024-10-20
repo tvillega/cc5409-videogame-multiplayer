@@ -122,6 +122,7 @@ speed_scale = 1.5
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-2, 5)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_7s4g4")
 
 [node name="Hurtbox" parent="." index="3"]
