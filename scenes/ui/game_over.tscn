@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcasvk8a3055v"]
+
+[ext_resource type="Script" path="res://scenes/ui/game_over.gd" id="1_aul53"]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_aul53")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 531.0
+offset_top = 190.0
+offset_right = -529.0
+offset_bottom = -435.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 458.0
+offset_top = 255.0
+offset_right = -445.0
+offset_bottom = -343.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
+theme_override_font_sizes/font_size = 30
+text = "A buddy has died"
+
+[node name="MenuButton" type="Button" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 491.0
+offset_top = 327.0
+offset_right = -490.0
+offset_bottom = -271.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 492.0
+offset_top = 408.5
+offset_right = -489.0
+offset_bottom = -189.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,140 @@
+[gd_scene load_steps=22 format=3 uid="uid://cmolchx0spusu"]
+
+[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_q0yo4"]
+[ext_resource type="Script" path="res://scenes/enemies/orc.gd" id="2_c7sbn"]
+[ext_resource type="Texture2D" uid="uid://euwoxyjtr4tp" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Run/Run-Sheet.png" id="3_efkcf"]
+[ext_resource type="Texture2D" uid="uid://dc7hv4q8xy13x" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png" id="3_pgfmi"]
+[ext_resource type="Script" path="res://scenes/enemies/orc_hurtbox.gd" id="5_fo756"]
+[ext_resource type="Script" path="res://scenes/enemies/orc_hitbox.gd" id="6_kj7v6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw407"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ovb"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0tc"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfxkm"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am82n"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiahw"]
+atlas = ExtResource("3_efkcf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oh36b"]
+atlas = ExtResource("3_pgfmi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8txp"]
+atlas = ExtResource("3_pgfmi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iq1p"]
+atlas = ExtResource("3_pgfmi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3ai7"]
+atlas = ExtResource("3_pgfmi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkr2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw407")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3ovb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfxkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am82n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tiahw")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oh36b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8txp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iq1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3ai7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5e4jj"]
+radius = 15.6749
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3kqwp"]
+radius = 228.265
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxivr"]
+size = Vector2(12.5, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffpns"]
+size = Vector2(74, 88)
+
+[node name="Npc" instance=ExtResource("1_q0yo4")]
+script = ExtResource("2_c7sbn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_tkr2n")
+animation = &"chase"
+speed_scale = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 5)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_5e4jj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 5)
+shape = SubResource("CircleShape2D_3kqwp")
+
+[node name="Hurtbox" parent="." index="3"]
+script = ExtResource("5_fo756")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-3.5, 1)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_kxivr")
+
+[node name="Hitbox" parent="." index="4"]
+script = ExtResource("6_kj7v6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-3, 2)
+shape = SubResource("RectangleShape2D_ffpns")

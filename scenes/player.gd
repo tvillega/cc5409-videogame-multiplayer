@@ -1,9 +1,11 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed = 400
 @export var jump_speed = 6000
 @export var acceleration = 1000
 @export var is_tank = true
+@export var dead = false
 
 var player
 var id
@@ -19,25 +21,25 @@ var paused = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var tank_gun: TankGun = $TankGun
-@onready var shot_gun: ShotGun = $ShotGun
+@onready var pistol: Firearm = $Pistol
+@onready var shotgun: Firearm = $Shotgun
+@onready var stats = $Stats
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var movement_orient = ""
 
+func _process(_delta):
+	if stats.health <= 0 and not dead:
+		velocity = Vector2(0, 0)
+		dead = true
+		animated_sprite_2d.play("death")
+	else: if not dead:
+		animated_sprite_2d.play("idle_down")
 	
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("test"):
 			test.rpc()
-		if event.is_action_pressed("swap"):
-			if is_tank:
-				is_tank = false
-				remove_child(tank_gun)
-				add_child(shot_gun)
-			else: 
-				is_tank = true
-				remove_child(shot_gun)
-				add_child(tank_gun)
 				
 
 func _physics_process(delta: float) -> void:
@@ -45,23 +47,34 @@ func _physics_process(delta: float) -> void:
 		if input_synchronizer.pause:
 			pauseMenu()
 		input_synchronizer.pause = false
+	
+	if not dead:
+		var directions = input_synchronizer.directions
+		velocity = directions * speed
+		if input_synchronizer.jump:
+			velocity += directions * jump_speed
 		
-	var directions = input_synchronizer.directions
-	velocity = directions * speed
-	if input_synchronizer.jump:
-		velocity += directions * jump_speed
-	
-	input_synchronizer.jump = false
-	
+		input_synchronizer.jump = false
+		if input_synchronizer.swap:
+			if is_tank:
+				is_tank = false
+				remove_child(pistol)
+				add_child(shotgun)
+			else:
+				is_tank = true
+				remove_child(shotgun)
+				add_child(pistol)
+		input_synchronizer.swap = false
+		
 	move_and_slide()
 
 
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
 	set_multiplayer_authority(player_data.id)
-	tank_gun.set_multiplayer_authority(player_data.id)
-	shot_gun.set_multiplayer_authority(player_data.id)
-	remove_child(shot_gun)
+	pistol.set_multiplayer_authority(player_data.id)
+	shotgun.set_multiplayer_authority(player_data.id)
+	remove_child(shotgun)
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 
@@ -88,4 +101,17 @@ func pauseMenu():
 		
 	
 	paused = !paused
+	
+func take_damage(damage: int) -> void:
+	#notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
+	stats.health -= damage
+	# Avoid sending text twice
+	if multiplayer.is_server():
+		Debug.log("Player says auch! -%d" % damage)
+		Debug.log("Player health at %d" % stats.health)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "death":
+		get_tree().change_scene_to_file("res://scenes/ui/game_over.tscn")
 	

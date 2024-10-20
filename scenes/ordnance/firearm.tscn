@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cent7k5p32b1j"]
+
+[node name="Firearm" type="Node2D"]
+
+[node name="Sprite" type="Node2D" parent="."]

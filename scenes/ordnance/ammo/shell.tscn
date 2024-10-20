@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfeanxd0s5tf4"]
+
+[ext_resource type="PackedScene" uid="uid://bic68ovslcq8l" path="res://scenes/ordnance/projectile.tscn" id="1_dogsq"]
+[ext_resource type="Script" path="res://scenes/ordnance/ammo/shell.gd" id="1_st8h6"]
+[ext_resource type="Texture2D" uid="uid://dm11o23uru4a2" path="res://sprites/Weapons/TheUltimateWeaponsPack_Sheet.png" id="2_iien0"]
+[ext_resource type="Script" path="res://scenes/ordnance/ammo/shell_hitbox.gd" id="4_7le83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wup0w"]
+size = Vector2(6, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xayp2"]
+radius = 4.0
+
+[node name="Shell" instance=ExtResource("1_dogsq")]
+script = ExtResource("1_st8h6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_iien0")
+region_enabled = true
+region_rect = Rect2(66.2664, 456.908, 3.21045, 3.04489)
+
+[node name="WorldCollision" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wup0w")
+
+[node name="Hitbox" parent="." index="2"]
+script = ExtResource("4_7le83")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_xayp2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
