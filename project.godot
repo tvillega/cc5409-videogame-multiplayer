@@ -19,6 +19,7 @@ config/icon="res://sprites/icon.svg"
 
 Debug="*res://autoloads/debug.gd"
 Game="*res://autoloads/game.tscn"
+SignalHandler="*res://autoloads/signal_handler.gd"
 
 [gui]
 

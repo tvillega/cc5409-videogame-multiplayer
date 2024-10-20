@@ -7,4 +7,4 @@
 [node name="MedicInventory" instance=ExtResource("1_0qa8l")]
 script = ExtResource("2_w1vxe")
 
-[node name="Pistol" parent="." index="1" instance=ExtResource("3_civgs")]
+[node name="Pistol" parent="." index="0" instance=ExtResource("3_civgs")]

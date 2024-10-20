@@ -1,14 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1k5su5sfar6a"]
+[gd_scene load_steps=2 format=3 uid="uid://b1k5su5sfar6a"]
 
 [ext_resource type="Script" path="res://scenes/swapable/inventory.gd" id="1_ax2m3"]
-[ext_resource type="PackedScene" uid="uid://bkvdcld6sp21y" path="res://scenes/player.tscn" id="2_8g6f6"]
-[ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="2_lmfqd"]
 
 [node name="Inventory" type="Node2D"]
 script = ExtResource("1_ax2m3")
-
-[node name="Player" parent="." instance=ExtResource("2_8g6f6")]
-
-[node name="InputSynchronizer" parent="." instance=ExtResource("2_lmfqd")]
-
-[connection signal="swap_sign" from="." to="." method="_on_swap_sign"]

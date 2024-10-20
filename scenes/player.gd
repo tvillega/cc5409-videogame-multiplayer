@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 var player
 var id
+
 @onready var label: Label = $Label
 @onready var pause_menu: Control = $Camera2D/PauseMenu
 var paused = false
@@ -21,7 +22,6 @@ var paused = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
 @onready var stats = $Stats
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
@@ -54,18 +54,17 @@ func _physics_process(delta: float) -> void:
 		
 		input_synchronizer.jump = false
 		
-		
 	move_and_slide()
 
 
 func setup(player_data: Statics.PlayerData) -> void:
 	name = str(player_data.id)
-	set_multiplayer_authority(player_data.id)
-	input_synchronizer.set_multiplayer_authority(player_data.id)
-	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
-
-	label.text = player_data.name
 	id = player_data.id
+	set_multiplayer_authority(id)
+	input_synchronizer.set_multiplayer_authority(id)
+	multiplayer_synchronizer.set_multiplayer_authority(id)
+	label.text = player_data.name
+	
 	player = player_data
 	camera_2d.enabled = is_multiplayer_authority()
 

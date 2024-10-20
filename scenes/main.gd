@@ -8,28 +8,32 @@ extends Node2D
 #@onready var npc: Node2D = $npc
 
 func _ready() -> void:
-	var client_id: int
+	var server_player: Player
+	var client_player: Player
 	for i in Game.players.size():
+		
+		#leo datos e inicio jugador
 		var player_data = Game.players[i]
 		var player_inst = player_scene.instantiate()
-		players.add_child(player_inst)
-
-		player_inst.setup(player_data)
-		if player_inst.id != 1:
-			client_id = player_inst.id
-		player_inst.global_position = markers.get_child(i).global_position
-		
-		
-	for pl in players.get_children(): 
+		#players.add_child(player_inst)
+		#inicio inventarios
 		var INV
-		var pos
-		if pl.id == 1:
+		var pos = markers.get_child(i).global_position
+		if player_data.id == 1:
+			server_player = player_inst
 			INV = preload("res://scenes/swapable/medic_inventory.tscn")
-			pos = markers.get_child(0).global_position
 		else:
+			client_player = player_inst
 			INV = preload("res://scenes/swapable/tank_inventory.tscn")
-			pos = markers.get_child(1).global_position
+			
 		var inv_inst = INV.instantiate()
 		inventories.add_child(inv_inst)
-		inv_inst.setup(pl.id, client_id)
-		inv_inst.global_position = pos
+		#jugadores son hijos de inventario
+		inv_inst.add_child(player_inst)
+		player_inst.setup(player_data)
+		player_inst.global_position = pos
+		#inv_inst.global_position = pos
+	for inv in inventories.get_children():
+		inv.setup(server_player,client_player)
+		
+		
