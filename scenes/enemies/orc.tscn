@@ -91,16 +91,16 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5e4jj"]
-radius = 15.6749
+radius = 12.5156
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kqwp"]
 radius = 228.265
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kxivr"]
-size = Vector2(12.5, 31)
+size = Vector2(14.5, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffpns"]
-size = Vector2(74, 88)
+size = Vector2(32, 58)
 
 [node name="Npc" instance=ExtResource("1_q0yo4")]
 script = ExtResource("2_c7sbn")
@@ -112,13 +112,18 @@ animation = &"chase"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+visible = false
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-2, 5)
+position = Vector2(-1.19209e-07, 13)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("CircleShape2D_5e4jj")
 
+[node name="DetectionArea" parent="." index="2"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+visible = false
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-2, 5)
@@ -129,13 +134,14 @@ shape = SubResource("CircleShape2D_3kqwp")
 script = ExtResource("5_fo756")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-3.5, 1)
+position = Vector2(-1, 19)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_kxivr")
 
 [node name="Hitbox" parent="." index="4"]
+visible = false
 script = ExtResource("6_kj7v6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-3, 2)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_ffpns")

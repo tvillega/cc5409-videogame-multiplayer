@@ -1,6 +1,5 @@
-[gd_scene load_steps=35 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=34 format=3 uid="uid://bkvdcld6sp21y"]
 
-[ext_resource type="PackedScene" uid="uid://dmjaytasbi03v" path="res://scenes/ui/hud.tscn" id="2_dknyr"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
 [ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_je07h"]
@@ -8,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3ibdgnoopdug" path="res://sprites/Tank/Walk/Down.png" id="4_8i84d"]
 [ext_resource type="Texture2D" uid="uid://carye8ux1xcgx" path="res://sprites/Tank/Die/Down.png" id="4_trviw"]
 [ext_resource type="PackedScene" uid="uid://bvaq6d4egho2q" path="res://scenes/ordnance/guns/pistol.tscn" id="7_06oed"]
-[ext_resource type="Script" path="res://scenes/stats.gd" id="8_wklth"]
+[ext_resource type="PackedScene" uid="uid://dme23w7vghl8a" path="res://scenes/Stats.tscn" id="9_47mgd"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
 [ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
 
@@ -192,9 +191,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nxi3p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xfimg")
 show_percentage = false
 
-[node name="HUD" parent="." instance=ExtResource("2_dknyr")]
-visible = false
-
 [node name="Label" type="Label" parent="."]
 offset_left = -58.0
 offset_top = -93.0
@@ -233,14 +229,13 @@ animation = &"idle_down"
 
 [node name="Pistol" parent="." instance=ExtResource("7_06oed")]
 
+[node name="Stats" parent="." instance=ExtResource("9_47mgd")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_kjipn")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="Stats" type="Node" parent="."]
-script = ExtResource("8_wklth")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("9_qugai")

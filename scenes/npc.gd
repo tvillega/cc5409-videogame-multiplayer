@@ -6,33 +6,44 @@ extends CharacterBody2D
 @export var speed = 200
 @export var acceleration = 500
 @export var player = null
-
+@export var dead = false
 var target: Node2D
 
 @onready var detection_area: Area2D = $DetectionArea 
+@onready var stats: Stats = $Stats
 
 func _process(_delta):
 	# Change sprite depending on what is going on
+	if stats.health <= 0 and !dead: 
+		npcDeath.rpc()
 	if target:
 		_animated_sprite.play("chase")
 	else:
 		_animated_sprite.play("idle")
-
+@rpc("any_peer", "call_local", "reliable")	
+func npcDeath() -> void:
+	velocity = Vector2(0, 0)
+	dead = true
+	_animated_sprite.stop()
+	self.queue_free()
 func _ready() -> void:
 	# Run detection area stuff (only inside server)
+	
+	#stats.health_changed.connect(_on_health_changed)
 	if multiplayer.is_server():
 		detection_area.body_entered.connect(_on_body_entered)
 		detection_area.body_exited.connect(_on_body_exited)
 
 func _physics_process(delta):
 	# Start a chase towards the player
-	if target:
-		var direction = global_position.direction_to(target.global_position)
-		var distance = global_position.distance_to(target.global_position)
-		# Don't glitch the player movement
-		if distance > 50:
-			velocity = velocity.move_toward(direction * speed, acceleration * delta)
-			move_and_slide()
+	if not dead:
+		if target:
+			var direction = global_position.direction_to(target.global_position)
+			var distance = global_position.distance_to(target.global_position)
+			# Don't glitch the player movement
+			if distance > 50:
+				velocity = velocity.move_toward(direction * speed, acceleration * delta)
+				move_and_slide()
 	
 ###
 ### This sets the chase target i.e. the player
@@ -63,5 +74,7 @@ func set_target_remote(target_path):
 ##
 func take_damage(damage: int):
 	# Avoid sending text twice
+	stats.health -= damage
 	if multiplayer.is_server():
-		Debug.log("NPC says auch! -%d" % damage)
+		Debug.log("NPC says auch! remaining health -%d" % stats.health)
+		
