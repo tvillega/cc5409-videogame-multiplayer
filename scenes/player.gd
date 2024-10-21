@@ -131,6 +131,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_health_changed(health) -> void:
 	#hud.health = health
 	health_bar.value = health
-	if health <= 0:
+	if health < 0:
 		pass
 	

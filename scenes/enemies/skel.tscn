@@ -97,10 +97,10 @@ animations = [{
 radius = 118.004
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bs3p"]
-size = Vector2(12.5, 31)
+size = Vector2(25, 34.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntor2"]
-size = Vector2(74, 88)
+size = Vector2(65, 77)
 
 [node name="Npc" instance=ExtResource("1_7jups")]
 script = ExtResource("3_v70pq")
@@ -118,6 +118,9 @@ sprite_frames = SubResource("SpriteFrames_k0xoy")
 animation = &"idle"
 speed_scale = 1.5
 
+[node name="DetectionArea" parent="." index="2"]
+visible = false
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 light_mask = 2
 visibility_layer = 2
@@ -126,10 +129,11 @@ scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_7s4g4")
 
 [node name="Hurtbox" parent="." index="3"]
+visible = false
 script = ExtResource("5_kwje2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2(-3.5, 1)
+position = Vector2(-2, 4.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_2bs3p")
 
@@ -137,5 +141,5 @@ shape = SubResource("RectangleShape2D_2bs3p")
 script = ExtResource("6_ld438")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-3, 2)
+position = Vector2(-3.5, -0.5)
 shape = SubResource("RectangleShape2D_ntor2")
