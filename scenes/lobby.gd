@@ -14,8 +14,8 @@ var _menu_stack: Array[Control] = []
 @onready var ip = %IP
 @onready var back_join: Button = %BackJoin
 @onready var confirm_join: Button = %ConfirmJoin
-@onready var role_a: Button = %RoleA
-@onready var role_b: Button = %RoleB
+@onready var tank: Button = %Tank
+@onready var medic: Button = %Medic
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
 @onready var menus: MarginContainer = %Menus
@@ -54,8 +54,8 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): Game.set_current_player_role(Statics.Role.ROLE_A))
-	role_b.pressed.connect(func(): Game.set_current_player_role(Statics.Role.ROLE_B))
+	tank.pressed.connect(func(): Game.set_current_player_role(Statics.Role.TANK))
+	medic.pressed.connect(func(): Game.set_current_player_role(Statics.Role.MEDIC))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -226,8 +226,8 @@ func set_player_ready(id: int, value: bool):
 
 @rpc("any_peer", "call_local", "reliable")
 func starting_game(value: bool):
-	role_a.disabled = value
-	role_b.disabled = value
+	tank.disabled = value
+	medic.disabled = value
 	back_ready.disabled = value
 	time_container.visible = value
 	if value:
