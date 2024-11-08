@@ -8,6 +8,8 @@ var _menu_stack: Array[Control] = []
 
 @onready var user = %User
 @onready var start = %Start
+@onready var how_to_play = %"How to Play"
+@onready var credits = %Credits
 @onready var exit = %Exit
 @onready var host = %Host
 @onready var join = %Join
@@ -17,10 +19,20 @@ var _menu_stack: Array[Control] = []
 @onready var tank: Button = %Tank
 @onready var medic: Button = %Medic
 @onready var back_ready: Button = %BackReady
+@onready var back_to_main_1: Button = %BackToMain1
+@onready var next_1: Button = %Next1
+@onready var back_to_main_2: Button = %BackToMain2
+@onready var next_2: Button = %Next2
+@onready var back_to_main_3: Button = %BackToMain3
+@onready var back_to_main_4: Button = %BackToMain4
 @onready var ready_toggle: Button = %Ready
 @onready var menus: MarginContainer = %Menus
 @onready var main_menu = %MainMenu
 @onready var start_menu = %StartMenu
+@onready var credits_menu = %CreditsMenu
+@onready var how_to_play_1 = %HowToPlay1
+@onready var how_to_play_2 = %HowToPlay2
+@onready var how_to_play_3 = %HowToPlay3
 @onready var join_menu = %JoinMenu
 @onready var ready_menu = %ReadyMenu
 @onready var players = %Players
@@ -44,6 +56,8 @@ func _ready():
 	Game.players_updated.connect(_check_ready)
 	
 	start.pressed.connect(_on_start_pressed)
+	how_to_play.pressed.connect(_on_how_to_play_pressed)
+	credits.pressed.connect(_on_credits_pressed)
 	exit.pressed.connect(_on_exit_pressed)
 	
 	host.pressed.connect(_on_host_pressed)
@@ -53,6 +67,13 @@ func _ready():
 	
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
+	back_to_main_1.pressed.connect(func(): _go_to_menu(main_menu))
+	back_to_main_2.pressed.connect(func(): _go_to_menu(main_menu))
+	back_to_main_3.pressed.connect(func(): _go_to_menu(main_menu))
+	back_to_main_4.pressed.connect(func(): _go_to_menu(main_menu))
+	
+	next_1.pressed.connect(func(): _go_to_menu(how_to_play_2))
+	next_2.pressed.connect(func(): _go_to_menu(how_to_play_3))
 	
 	tank.pressed.connect(func(): Game.set_current_player_role(Statics.Role.TANK))
 	medic.pressed.connect(func(): Game.set_current_player_role(Statics.Role.MEDIC))
@@ -86,6 +107,12 @@ func _on_upnp_completed(error) -> void:
 
 func _on_start_pressed() -> void:
 	_go_to_menu(start_menu)
+	
+func _on_credits_pressed() -> void:
+	_go_to_menu(credits_menu)
+
+func _on_how_to_play_pressed() -> void:
+	_go_to_menu(how_to_play_1)
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

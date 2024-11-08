@@ -179,12 +179,154 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Start"
 
+[node name="How to Play" type="Button" parent="PanelContainer/Menus/MainMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "How to Play"
+
+[node name="Credits" type="Button" parent="PanelContainer/Menus/MainMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Credits"
+
 [node name="Exit" type="Button" parent="PanelContainer/Menus/MainMenu/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Exit"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/CreditsMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 35
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/CreditsMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/CreditsMenu/HBoxContainer"]
+layout_mode = 2
+text = "Aquí se mostrarán los créditos"
+horizontal_alignment = 1
+
+[node name="BackToMain1" type="Button" parent="PanelContainer/Menus/CreditsMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Back To Menu"
+
+[node name="HowToPlay1" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 35
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
+layout_mode = 2
+text = "Cómo jugar - Parte 1 (Controles?)"
+horizontal_alignment = 1
+
+[node name="Next1" type="Button" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Next"
+
+[node name="BackToMain2" type="Button" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Back To Menu"
+
+[node name="HowToPlay2" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 35
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
+layout_mode = 2
+text = "Cómo jugar - Parte 2"
+horizontal_alignment = 1
+
+[node name="Next2" type="Button" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Next"
+
+[node name="BackToMain3" type="Button" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Back To Menu"
+
+[node name="HowToPlay3" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 35
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay3/HBoxContainer"]
+layout_mode = 2
+text = "Cómo jugar - Parte 3"
+horizontal_alignment = 1
+
+[node name="BackToMain4" type="Button" parent="PanelContainer/Menus/HowToPlay3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Back To Menu"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PanelContainer"]
 
