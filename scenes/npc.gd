@@ -12,6 +12,8 @@ var target: Node2D
 @onready var detection_area: Area2D = $DetectionArea 
 @onready var stats: Stats = $Stats
 
+@onready var nav_agent = $Navigation/NavigationAgent2D as NavigationAgent2D
+
 func _process(_delta):
 	# Change sprite depending on what is going on
 	if stats.health <= 0 and !dead: 
@@ -36,14 +38,39 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	# Start a chase towards the player
-	if not dead:
-		if target:
-			var direction = global_position.direction_to(target.global_position)
-			var distance = global_position.distance_to(target.global_position)
-			# Don't glitch the player movement
-			if distance > 50:
-				velocity = velocity.move_toward(direction * speed, acceleration * delta)
-				move_and_slide()
+	
+	if target:
+		
+		var direction = Vector2.ZERO
+		direction = nav_agent.get_next_path_position()
+		direction = direction.normalized()
+		Debug.log("Going to %s" % nav_agent.get_next_path_position())
+		velocity = direction * speed
+		move_and_slide()
+		
+		# Old navigation code
+		#var dir = nav_agent.get_next_path_position().normalized()
+		#Debug.log("Going to %s" % dir)
+		#velocity = dir * speed
+		#move_and_slide()
+			
+		# Legacy navigation code (works flawlessly)
+		#var direction = global_position.direction_to(target.global_position)
+		#var distance = global_position.distance_to(target.global_position)
+		## Don't glitch the player movement
+		#if distance > 50:
+			#Debug.log("Going to %s" % direction)
+			#velocity = velocity.move_toward(direction * speed, acceleration * delta)
+			#move_and_slide()
+	
+func makepath() -> void:
+	if target:
+		nav_agent.target_position = target.global_position
+		#nav_agent.target_position = global_position.direction_to(target.global_position)
+	
+func _on_timer_timeout() -> void:
+	# pass # Replace with function body.
+	makepath()	
 	
 ###
 ### This sets the chase target i.e. the player
@@ -77,4 +104,3 @@ func take_damage(damage: int):
 	stats.health -= damage
 	if multiplayer.is_server():
 		Debug.log("NPC says auch! remaining health -%d" % stats.health)
-		

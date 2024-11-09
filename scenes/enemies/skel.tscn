@@ -143,3 +143,12 @@ script = ExtResource("6_ld438")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-3.5, -0.5)
 shape = SubResource("RectangleShape2D_ntor2")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation" index="0"]
+navigation_layers = 255
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="Navigation" index="1"]
+autostart = true
+
+[connection signal="timeout" from="Navigation/Timer" to="." method="_on_timer_timeout"]
