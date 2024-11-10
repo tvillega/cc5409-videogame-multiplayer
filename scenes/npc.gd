@@ -16,16 +16,21 @@ func _process(_delta):
 	# Change sprite depending on what is going on
 	if stats.health <= 0 and !dead: 
 		npcDeath.rpc()
-	if target:
-		_animated_sprite.play("chase")
+	elif target:
+		if !dead: _animated_sprite.play("chase")
 	else:
-		_animated_sprite.play("idle")
+		if !dead: _animated_sprite.play("idle")
+
 @rpc("any_peer", "call_local", "reliable")	
 func npcDeath() -> void:
 	velocity = Vector2(0, 0)
 	dead = true
-	_animated_sprite.stop()
-	self.queue_free()
+	_animated_sprite.play("death")
+
+func _on_animated_sprite_2d_animation_finished():
+	if _animated_sprite.animation == "death":
+		self.queue_free()
+
 func _ready() -> void:
 	# Run detection area stuff (only inside server)
 	

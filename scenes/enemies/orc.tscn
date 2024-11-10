@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmolchx0spusu"]
+[gd_scene load_steps=29 format=3 uid="uid://cmolchx0spusu"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_q0yo4"]
 [ext_resource type="Script" path="res://scenes/enemies/orc.gd" id="2_c7sbn"]
 [ext_resource type="Texture2D" uid="uid://euwoxyjtr4tp" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Run/Run-Sheet.png" id="3_efkcf"]
 [ext_resource type="Texture2D" uid="uid://dc7hv4q8xy13x" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png" id="3_pgfmi"]
+[ext_resource type="Texture2D" uid="uid://b65dhss3yvj83" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Death/Death-Sheet.png" id="4_mnnue"]
 [ext_resource type="Script" path="res://scenes/enemies/orc_hurtbox.gd" id="5_fo756"]
 [ext_resource type="Script" path="res://scenes/enemies/orc_hitbox.gd" id="6_kj7v6"]
 
@@ -29,6 +30,30 @@ region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tiahw"]
 atlas = ExtResource("3_efkcf")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trwjd"]
+atlas = ExtResource("4_mnnue")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne000"]
+atlas = ExtResource("4_mnnue")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2f42"]
+atlas = ExtResource("4_mnnue")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1r1m"]
+atlas = ExtResource("4_mnnue")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lxy0"]
+atlas = ExtResource("4_mnnue")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfw6m"]
+atlas = ExtResource("4_mnnue")
 region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oh36b"]
@@ -74,6 +99,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_trwjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne000")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2f42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1r1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lxy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfw6m")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oh36b")
 }, {
 "duration": 1.0,
@@ -108,7 +156,7 @@ script = ExtResource("2_c7sbn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
 scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_tkr2n")
-animation = &"chase"
+animation = &"death"
 speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -139,3 +187,5 @@ script = ExtResource("6_kj7v6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0.5, 17)
 shape = SubResource("RectangleShape2D_ffpns")
+
+[connection signal="animation_finished" from="Sprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
