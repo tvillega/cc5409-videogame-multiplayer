@@ -1,13 +1,46 @@
-[gd_scene load_steps=37 format=3 uid="uid://x737o50fwj3d"]
+[gd_scene load_steps=46 format=3 uid="uid://x737o50fwj3d"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_dav1i"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard.gd" id="2_6x1ws"]
+[ext_resource type="Texture2D" uid="uid://cp140jf2lg47" path="res://sprites/other/Evil Wizard/Attack.png" id="3_64wxn"]
 [ext_resource type="Texture2D" uid="uid://bycxyjmu5o5mt" path="res://sprites/other/Evil Wizard/Move.png" id="3_aqs0a"]
 [ext_resource type="Texture2D" uid="uid://drubdbs4ky3b5" path="res://sprites/other/Evil Wizard/Death.png" id="4_4pb3j"]
 [ext_resource type="Texture2D" uid="uid://bnb82l2iejkn" path="res://sprites/other/Evil Wizard/Idle.png" id="5_vraam"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hurtbox.gd" id="6_s5xf0"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hitbox.gd" id="7_tfvf4"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard_stats.gd" id="8_m0852"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1goc"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df86i"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f612"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lclnb"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(450, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rdic"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jglai"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(750, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdwlt"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(900, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5a77"]
+atlas = ExtResource("3_64wxn")
+region = Rect2(1050, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p65cd"]
 atlas = ExtResource("3_aqs0a")
@@ -97,6 +130,35 @@ region = Rect2(1050, 0, 150, 150)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_t1goc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df86i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7f612")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lclnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rdic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jglai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdwlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5a77")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p65cd")
 }, {
 "duration": 1.0,
@@ -184,7 +246,7 @@ radius = 616.092
 size = Vector2(25, 34.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fowqr"]
-size = Vector2(91, 110)
+size = Vector2(222, 68)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fwed"]
 bg_color = Color(0.6, 0, 0, 1)
@@ -198,7 +260,7 @@ speed = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
 sprite_frames = SubResource("SpriteFrames_nm4jv")
-animation = &"chase"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 light_mask = 2
@@ -226,7 +288,7 @@ shape = SubResource("RectangleShape2D_lldcb")
 script = ExtResource("7_tfvf4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(-2.5, -10)
+position = Vector2(1, -4)
 shape = SubResource("RectangleShape2D_fowqr")
 
 [node name="BossStats" type="Node" parent="." index="6"]

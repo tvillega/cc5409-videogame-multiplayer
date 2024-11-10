@@ -19,8 +19,21 @@ func _process(_delta):
 	# Change sprite depending on what is going on
 	if stats.health <= 0 and !dead: 
 		npcDeath.rpc()
+	
 	elif target:
-		if !dead: _animated_sprite.play("chase")
+		
+		if velocity.x < 0:
+			_animated_sprite.flip_h = true
+		elif velocity.x > 0:
+			_animated_sprite.flip_h = false
+			
+		var distance = global_position.distance_to(target.global_position)
+
+		if !dead:
+			if distance < 100:
+				_animated_sprite.play("attack")
+			else:
+				_animated_sprite.play("chase")
 	else:
 		if !dead: _animated_sprite.play("idle")
 
