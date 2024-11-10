@@ -249,5 +249,9 @@ shape = SubResource("RectangleShape2D_d4qml")
 [node name="Shotgun" parent="." instance=ExtResource("10_ot44p")]
 position = Vector2(-3, -3)
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

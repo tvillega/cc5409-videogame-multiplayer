@@ -30,7 +30,7 @@ var paused = false
 
 var movement_orient = ""
 
-func _ready() ->  void:
+func _ready() ->  void:	
 	stats.health_changed.connect(_on_health_changed)
 	#hud.health = stats.health
 	#hud.visible = is_multiplayer_authority()
@@ -133,4 +133,12 @@ func _on_health_changed(health) -> void:
 	health_bar.value = health
 	if health < 0:
 		pass
+	
+
+
+func _on_timer_timeout() -> void:
+	var my_player_data = Game.get_current_player()
+	if my_player_data.role == Statics.Role.MEDIC:
+		stats.health += 10
+		
 	
