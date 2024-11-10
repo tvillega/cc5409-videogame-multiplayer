@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=9 format=4 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://bkvdcld6sp21y" path="res://scenes/player.tscn" id="2_p1kmq"]
 [ext_resource type="Texture2D" uid="uid://debmwruweivu" path="res://sprites/art/Environment/Dungeon Prison/Assets/Tiles.png" id="3_j2850"]
 [ext_resource type="PackedScene" uid="uid://bgcn2wkxkl8ko" path="res://scenes/enemies/skel.tscn" id="4_rgulj"]
 [ext_resource type="PackedScene" uid="uid://cmolchx0spusu" path="res://scenes/enemies/orc.tscn" id="5_gnl5r"]
+[ext_resource type="PackedScene" uid="uid://x737o50fwj3d" path="res://scenes/enemies/boss_wizard.tscn" id="6_tepof"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvtnr"]
 texture = ExtResource("3_j2850")
@@ -405,3 +406,6 @@ speed = 200
 [node name="Orc4" parent="." instance=ExtResource("5_gnl5r")]
 position = Vector2(473, 1239)
 speed = 200
+
+[node name="Npc" parent="." instance=ExtResource("6_tepof")]
+position = Vector2(1536, 1558)

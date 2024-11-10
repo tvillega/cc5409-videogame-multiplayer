@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://x737o50fwj3d"]
+[gd_scene load_steps=37 format=3 uid="uid://x737o50fwj3d"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_dav1i"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard.gd" id="2_6x1ws"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bnb82l2iejkn" path="res://sprites/other/Evil Wizard/Idle.png" id="5_vraam"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hurtbox.gd" id="6_s5xf0"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hitbox.gd" id="7_tfvf4"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_wizard_stats.gd" id="8_m0852"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p65cd"]
 atlas = ExtResource("3_aqs0a")
@@ -185,6 +186,12 @@ size = Vector2(25, 34.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fowqr"]
 size = Vector2(91, 110)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fwed"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luqh5"]
+bg_color = Color(2.16588e-06, 0.59681, 0.305655, 1)
+
 [node name="Npc" instance=ExtResource("1_dav1i")]
 script = ExtResource("2_6x1ws")
 speed = 200
@@ -221,5 +228,18 @@ script = ExtResource("7_tfvf4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-2.5, -10)
 shape = SubResource("RectangleShape2D_fowqr")
+
+[node name="BossStats" type="Node" parent="." index="6"]
+script = ExtResource("8_m0852")
+
+[node name="HealthBar" type="ProgressBar" parent="." index="7"]
+offset_left = -84.0
+offset_top = -75.0
+offset_right = 84.0
+offset_bottom = -70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4fwed")
+theme_override_styles/fill = SubResource("StyleBoxFlat_luqh5")
+max_value = 5000.0
+show_percentage = false
 
 [connection signal="animation_finished" from="Sprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
