@@ -13,6 +13,7 @@ var target: Node2D
 @onready var stats : BossWizardStats = $BossStats
 @onready var health_bar = $HealthBar
 
+@export var heal_animation = false
 
 
 func _process(_delta):
@@ -30,10 +31,14 @@ func _process(_delta):
 		var distance = global_position.distance_to(target.global_position)
 
 		if !dead:
-			if distance < 100:
+			if heal_animation:
+				velocity = Vector2(0,0)
+				_animated_sprite.play("heal")
+			elif distance < 100 and !heal_animation:
 				_animated_sprite.play("attack")
 			else:
 				_animated_sprite.play("chase")
+					
 	else:
 		if !dead: _animated_sprite.play("idle")
 
@@ -70,11 +75,16 @@ func _physics_process(delta):
 	# Start a chase towards the player
 	if not dead:
 		if target:
+			var target_player = target as Player
+			var target_player_data = Game.get_player(target_player.id)
+			var _sign = 1
+			#if target_player_data.role == Statics.Role.MEDIC:
+			#	_sign = -1
 			var direction = global_position.direction_to(target.global_position)
 			var distance = global_position.distance_to(target.global_position)
 			# Don't glitch the player movement
 			if distance > 50:
-				velocity = velocity.move_toward(direction * speed, acceleration * delta)
+				velocity = velocity.move_toward(direction * speed*_sign, acceleration * delta)
 				move_and_slide()
 	
 ###
@@ -109,4 +119,13 @@ func take_damage(damage: int):
 	stats.health -= damage
 	if multiplayer.is_server():
 		Debug.log("NPC says auch! remaining health -%d" % stats.health)
-		
+
+func _on_stop_heal_timer_timeout() -> void:
+	stats.health += 500
+	health_bar.value = stats.health
+	heal_animation = false
+
+func _on_start_heal_timer_timeout() -> void:
+
+	heal_animation = true
+	Debug.log("BOSS WIzzard HEAling!")

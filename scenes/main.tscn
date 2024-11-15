@@ -409,3 +409,4 @@ speed = 200
 
 [node name="Npc" parent="." instance=ExtResource("6_tepof")]
 position = Vector2(1536, 1558)
+heal_animation = false
