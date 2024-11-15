@@ -5,36 +5,6 @@
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_aul53")
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 531.0
-offset_top = 190.0
-offset_right = -529.0
-offset_bottom = -435.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"HeaderLarge"
-theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
-theme_override_font_sizes/font_size = 60
-text = "GAME OVER"
-
-[node name="Label2" type="Label" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 458.0
-offset_top = 255.0
-offset_right = -445.0
-offset_bottom = -343.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"HeaderSmall"
-theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
-theme_override_font_sizes/font_size = 30
-text = "A buddy has died"
-
 [node name="MenuButton" type="Button" parent="."]
 visible = false
 anchors_preset = 15
@@ -49,18 +19,52 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 
-[node name="QuitButton" type="Button" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 492.0
-offset_top = 408.5
-offset_right = -489.0
-offset_bottom = -189.5
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.325
+anchor_top = 0.194
+anchor_right = 0.681
+anchor_bottom = 0.728
+offset_left = -0.400024
+offset_top = 0.287994
+offset_right = -0.512085
+offset_bottom = 0.255981
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
+theme_override_font_sizes/font_size = 60
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+theme_override_colors/font_color = Color(0.965355, 0, 0.21515, 1)
+theme_override_font_sizes/font_size = 30
+text = "A buddy has died"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.419
+anchor_top = 0.606
+anchor_right = 0.582
+anchor_bottom = 0.802
+offset_left = 0.311951
+offset_top = 0.311981
+offset_right = 0.536011
+offset_bottom = 0.303955
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuitButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Exit"
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
