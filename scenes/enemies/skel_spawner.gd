@@ -5,9 +5,9 @@ extends MultiplayerSpawner
 @export var enemy_scene: PackedScene
 
 func _ready() -> void:
-	if multiplayer.is_server():
-		if enemy_scene:
-			timer.timeout.connect(on_timer_timeout)
+	#if multiplayer.is_server():
+	if enemy_scene:
+		timer.timeout.connect(on_timer_timeout)
 			
 func on_timer_timeout() -> void:
 	if not enemy_scene:
