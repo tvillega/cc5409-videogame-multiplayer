@@ -162,7 +162,7 @@ func request_swap()-> void:
 		return
 	if not swap_timer.is_stopped():
 		swap_equipment.rpc()
-		swap_progress_bar.hide()
+		
 	else:
 		for player_data in Game.players:
 			if is_instance_valid(player_data.local_scene):
@@ -176,6 +176,7 @@ func request_swap_local()-> void:
 		swap_progress_bar.max_value = swap_timer.wait_time
 		_swap_requester = multiplayer.get_remote_sender_id()
 		
+@rpc("any_peer","call_local")		
 func _on_swap_timer_timeout()-> void:
 	_swap_requester = 0
 	swap_progress_bar.hide()
@@ -200,6 +201,8 @@ func swap_equipment() -> void:
 		other_player_data.local_scene.remove_equipment()
 		update_equipment()
 		other_player_data.local_scene.update_equipment()
+	other_player_data.local_scene.swap_timer.stop()
+	other_player_data.local_scene._on_swap_timer_timeout()
 	swap_timer.stop()
 	_on_swap_timer_timeout()
 
