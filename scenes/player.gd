@@ -6,9 +6,11 @@ extends CharacterBody2D
 @export var acceleration = 1000
 @export var is_tank = true
 @export var dead = false
+@export var equipment : Array[Node2D]
 
 var player
 var id
+var _swap_requester: int
 @onready var label: Label = $Label
 @onready var pause_menu: Control = $Camera2D/PauseMenu
 var paused = false
@@ -21,12 +23,15 @@ var paused = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-@onready var pistol: Firearm = $Pistol
-@onready var shotgun: Firearm = $Shotgun
+@onready var pistol: Pistol = $Pistol
+@onready var shotgun: Shotgun = $Shotgun
+
 @onready var stats = $Stats
 #@onready var hud: HUD = $HUD
 @onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var swap_timer: Timer = $SwapTimer
+@onready var swap_progress_bar: ProgressBar = $SwapProgressBar
 
 var movement_orient = ""
 
@@ -35,13 +40,20 @@ func _ready() ->  void:
 	#hud.health = stats.health
 	#hud.visible = is_multiplayer_authority()
 	health_bar.value = stats.health
+	#swap_progress_bar.visible = is_multiplayer_authority()
 	#health_bar.visible = not is_multiplayer_authority()
+	swap_progress_bar.visible = is_multiplayer_authority()
+	swap_timer.timeout.connect(_on_swap_timer_timeout)
+	swap_progress_bar.hide()
 	
 func _process(_delta):
 	if stats.health <= 0 and not dead:
 		playerDeath.rpc()
 	else: if not dead:
 		animated_sprite_2d.play("idle_down")
+	
+	if not swap_timer.is_stopped():
+		swap_progress_bar.value = swap_timer.time_left
 	
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
@@ -62,17 +74,10 @@ func _physics_process(delta: float) -> void:
 			velocity += directions * jump_speed
 		
 		input_synchronizer.jump = false
-		if input_synchronizer.swap:
-			if is_tank:
-				is_tank = false
-				remove_child(pistol)
-				add_child(shotgun)
-			else:
-				is_tank = true
-				remove_child(shotgun)
-				add_child(pistol)
-		input_synchronizer.swap = false
 		
+		if is_multiplayer_authority():
+			if Input.is_action_just_pressed("swap"):
+				request_swap()
 	move_and_slide()
 
 
@@ -81,7 +86,16 @@ func setup(player_data: Statics.PlayerData) -> void:
 	set_multiplayer_authority(player_data.id)
 	pistol.set_multiplayer_authority(player_data.id)
 	shotgun.set_multiplayer_authority(player_data.id)
-	remove_child(shotgun)
+	if player_data.role == Statics.Role.MEDIC: 
+		
+		player_data.equipment.append(pistol)	
+		remove_child(shotgun)
+	else: 
+	
+		player_data.equipment.append(shotgun)
+		remove_child(pistol)
+		
+	
 	input_synchronizer.set_multiplayer_authority(player_data.id)
 	multiplayer_synchronizer.set_multiplayer_authority(player_data.id)
 
@@ -89,6 +103,7 @@ func setup(player_data: Statics.PlayerData) -> void:
 	id = player_data.id
 	player = player_data
 	camera_2d.enabled = is_multiplayer_authority()
+	update_equipment()	
 
 
 @rpc("authority", "call_remote", "unreliable")
@@ -142,3 +157,64 @@ func _on_timer_timeout() -> void:
 		stats.health += 10
 		
 	
+func request_swap()-> void:
+	if get_multiplayer_authority() == _swap_requester:
+		return
+	if not swap_timer.is_stopped():
+		swap_equipment.rpc()
+		swap_progress_bar.hide()
+	else:
+		for player_data in Game.players:
+			if is_instance_valid(player_data.local_scene):
+				player_data.local_scene.request_swap_local.rpc()
+			
+@rpc("any_peer","call_local")
+func request_swap_local()-> void:
+	if is_multiplayer_authority():
+		swap_timer.start()
+		swap_progress_bar.show()
+		swap_progress_bar.max_value = swap_timer.wait_time
+		_swap_requester = multiplayer.get_remote_sender_id()
+		
+func _on_swap_timer_timeout()-> void:
+	_swap_requester = 0
+	swap_progress_bar.hide()
+
+@rpc("any_peer", "call_local")
+func swap_equipment() -> void:
+	var my_player_data = Game.get_player(get_multiplayer_authority())
+	var other_player_data: Statics.PlayerData = null
+	for player_data in Game.players:
+		if player_data.id != get_multiplayer_authority():
+			other_player_data = player_data
+			break
+	if my_player_data.equipment and other_player_data.equipment:
+		var my_equipment = my_player_data.equipment
+		var my_role = my_player_data.role
+		my_player_data.equipment = other_player_data.equipment
+		my_player_data.role = other_player_data.role
+		
+		other_player_data.equipment = my_equipment
+		other_player_data.role = my_role
+		remove_equipment()
+		other_player_data.local_scene.remove_equipment()
+		update_equipment()
+		other_player_data.local_scene.update_equipment()
+	swap_timer.stop()
+	_on_swap_timer_timeout()
+
+func update_equipment() -> void:
+	var player_data = Game.get_player(id)
+	equipment = player_data.equipment
+	for eq in equipment:
+		eq.set_multiplayer_authority(id)
+	spawn_current_equipment()
+	
+func remove_equipment()-> void:
+	if equipment.size() > 0:
+		for eq in equipment:
+			remove_child(eq)
+			
+func spawn_current_equipment() -> void:
+	for eq in equipment:
+		add_child(eq)

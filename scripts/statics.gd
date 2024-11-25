@@ -18,12 +18,15 @@ class PlayerData:
 	var name: String
 	var index: int = 0
 	var role: Role
+	var equipment: Array[Node2D]
+	var local_scene
 	
 	func _init(new_id: int, new_name: String, new_index: int = 0, new_role: Role = Role.NONE) -> void:
 		id = new_id
 		name = new_name
 		index = new_index
 		role = new_role
+		equipment = []
 	
 	func to_dict() -> Dictionary:
 		return {
