@@ -1,6 +1,8 @@
 class_name Shotgun
 extends Firearm
 
+@export var fire_sound: AudioStream
+
 func shoot() -> void :
 	const SHELL = preload("res://scenes/ordnance/ammo/shell.tscn")
 	var new_shell_arr = Array()
@@ -13,3 +15,4 @@ func shoot() -> void :
 	for shell in new_shell_arr:
 		#%ShotgunShootingPoint.get_parent().get_parent().add_child(shell)
 		world.add_child(shell)
+	AudioManager.play_stream(fire_sound, -15)

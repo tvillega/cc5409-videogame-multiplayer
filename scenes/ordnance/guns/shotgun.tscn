@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccqvdui01goii"]
+[gd_scene load_steps=8 format=3 uid="uid://ccqvdui01goii"]
 
 [ext_resource type="PackedScene" uid="uid://cent7k5p32b1j" path="res://scenes/ordnance/firearm.tscn" id="1_164wv"]
 [ext_resource type="Script" path="res://scenes/ordnance/guns/shotgun.gd" id="2_ko73q"]
 [ext_resource type="Texture2D" uid="uid://dm11o23uru4a2" path="res://sprites/Weapons/TheUltimateWeaponsPack_Sheet.png" id="2_turo1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_lo3hr"]
+[ext_resource type="AudioStream" uid="uid://dcob0wf7f6t3x" path="res://sfx/Guns/762x39 Single Isolated WAV.wav" id="3_rphnf"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0663m"]
 
@@ -14,6 +15,7 @@ properties/0/replication_mode = 1
 
 [node name="Shotgun" instance=ExtResource("1_164wv")]
 script = ExtResource("2_ko73q")
+fire_sound = ExtResource("3_rphnf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 texture_filter = 1
