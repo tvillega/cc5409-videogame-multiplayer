@@ -6,6 +6,11 @@ extends CharacterBody2D
 @export var acceleration = 1000
 @export var is_tank = true
 @export var dead = false
+@export var foot_sound_1: AudioStream
+@export var foot_sound_2: AudioStream
+@export var foot_sound_3: AudioStream
+@export var dash_sound: AudioStream
+@export var damage_sound: AudioStream
 
 var player
 var id
@@ -27,6 +32,7 @@ var paused = false
 #@onready var hud: HUD = $HUD
 @onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var sound_timer: Timer = $SoundTimer
 
 var movement_orient = ""
 
@@ -60,7 +66,7 @@ func _physics_process(delta: float) -> void:
 		velocity = directions * speed
 		if input_synchronizer.jump:
 			velocity += directions * jump_speed
-		
+			AudioManager.play_stream(dash_sound, -15)
 		input_synchronizer.jump = false
 		if input_synchronizer.swap:
 			if is_tank:
@@ -72,6 +78,11 @@ func _physics_process(delta: float) -> void:
 				remove_child(shotgun)
 				add_child(pistol)
 		input_synchronizer.swap = false
+		if velocity.length() != 0:
+			if sound_timer.time_left <= 0:
+				foot_fx()
+				sound_timer.start(0.4)
+			
 		
 	move_and_slide()
 
@@ -112,6 +123,7 @@ func pauseMenu():
 func take_damage(damage: int) -> void:
 	#notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
 	stats.health -= damage
+	AudioManager.play_stream(damage_sound)
 	# Avoid sending text twice
 	if multiplayer.is_server():
 		Debug.log("Player says auch! -%d" % damage)
@@ -135,10 +147,18 @@ func _on_health_changed(health) -> void:
 		pass
 	
 
-
 func _on_timer_timeout() -> void:
 	var my_player_data = Game.get_current_player()
 	if my_player_data.role == Statics.Role.MEDIC:
 		stats.health += 10
+		
+func foot_fx() -> void:
+	var luck = randi_range(1, 3)
+	if luck == 1:
+		AudioManager.play_stream(foot_sound_1, -15, randi_range(0.8, 1.2))
+	elif luck == 2:
+		AudioManager.play_stream(foot_sound_2, -15, randi_range(0.8, 1.2))
+	else:
+		AudioManager.play_stream(foot_sound_3, -15, randi_range(0.8, 1.2))
 		
 	
