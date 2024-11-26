@@ -180,11 +180,11 @@ func _on_timer_timeout() -> void:
 func foot_fx() -> void:
 	var luck = randi_range(1, 3)
 	if luck == 1:
-		AudioManager.play_stream(foot_sound_1, -15, randi_range(0.8, 1.2))
+		AudioManager.play_stream(foot_sound_1, -15, randf_range(0.7, 1.3))
 	elif luck == 2:
-		AudioManager.play_stream(foot_sound_2, -15, randi_range(0.8, 1.2))
+		AudioManager.play_stream(foot_sound_2, -15, randf_range(0.7, 1.3))
 	else:
-		AudioManager.play_stream(foot_sound_3, -15, randi_range(0.8, 1.2))
+		AudioManager.play_stream(foot_sound_3, -15, randf_range(0.7, 1.3))
 		
 	
 func request_swap()-> void:

@@ -269,6 +269,7 @@ position = Vector2(-3, -3)
 autostart = true
 
 [node name="SoundTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="SwapProgressBar" type="ProgressBar" parent="."]
 offset_left = -20.0
