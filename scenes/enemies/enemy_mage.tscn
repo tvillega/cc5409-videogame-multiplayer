@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://0s3cdad7lvc0"]
+
+[ext_resource type="Script" path="res://scenes/enemies/enemy_rogue.gd" id="1_fwwvr"]
+
+[sub_resource type="GDScript" id="GDScript_64x6t"]
+script/source = "class_name Stats
+extends Node
+
+signal health_changed(health)
+
+@export var health := 100 :
+	set(value):
+		health = clamp(value, 0, max_health)
+		health_changed.emit(health)
+@export var max_health := 100
+"
+
+[node name="EnemyMage" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
+collision_layer = 8
+collision_mask = 13
+script = ExtResource("1_fwwvr")
+
+[node name="Sprite" type="Node2D" parent="."]
+scale = Vector2(1.6, 1.6)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="Stats" type="Node" parent="."]
+script = SubResource("GDScript_64x6t")
