@@ -1,0 +1,197 @@
+[gd_scene load_steps=29 format=3 uid="uid://da4xqe65hswac"]
+
+[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_u2l1u"]
+[ext_resource type="Script" path="res://scenes/enemies/skel/base.gd" id="2_tj333"]
+[ext_resource type="Texture2D" uid="uid://i40dhs57h6hf" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Run/Run-Sheet.png" id="3_futya"]
+[ext_resource type="Texture2D" uid="uid://plsqo4adoamr" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Death/Death-Sheet.png" id="4_h2utx"]
+[ext_resource type="Texture2D" uid="uid://brajet3gdqkbr" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Idle/Idle-Sheet.png" id="5_e4opf"]
+[ext_resource type="Script" path="res://scenes/enemies/skel/hurtbox.gd" id="6_owe41"]
+[ext_resource type="Script" path="res://scenes/enemies/skel/hitbox.gd" id="7_ofaqr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j2esn"]
+radius = 15.6749
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnu3u"]
+atlas = ExtResource("3_futya")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4lqk"]
+atlas = ExtResource("3_futya")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kww8u"]
+atlas = ExtResource("3_futya")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjt04"]
+atlas = ExtResource("3_futya")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hymr1"]
+atlas = ExtResource("3_futya")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8esa"]
+atlas = ExtResource("3_futya")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1a8ji"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktwpu"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecd7m"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf0a5"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86x2v"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lohcg"]
+atlas = ExtResource("4_h2utx")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n7cp"]
+atlas = ExtResource("5_e4opf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsc7j"]
+atlas = ExtResource("5_e4opf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ppgl"]
+atlas = ExtResource("5_e4opf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scdok"]
+atlas = ExtResource("5_e4opf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0xoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnu3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4lqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kww8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjt04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hymr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8esa")
+}],
+"loop": true,
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1a8ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktwpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecd7m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf0a5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86x2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lohcg")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n7cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsc7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ppgl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scdok")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7s4g4"]
+radius = 118.004
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bs3p"]
+size = Vector2(25, 34.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntor2"]
+size = Vector2(65, 77)
+
+[node name="SkelMage" instance=ExtResource("1_u2l1u")]
+script = ExtResource("2_tj333")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 5)
+scale = Vector2(1.6, 1.6)
+shape = SubResource("CircleShape2D_j2esn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_k0xoy")
+animation = &"idle"
+frame = 1
+frame_progress = 0.239579
+speed_scale = 1.5
+
+[node name="DetectionArea" parent="." index="2"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-2, 5)
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_7s4g4")
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+script = ExtResource("6_owe41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(-2, 4.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_2bs3p")
+
+[node name="Hitbox" parent="." index="4"]
+script = ExtResource("7_ofaqr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-3.5, -0.5)
+shape = SubResource("RectangleShape2D_ntor2")
+
+[connection signal="animation_finished" from="Sprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

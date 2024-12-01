@@ -1,6 +1,6 @@
 [gd_scene load_steps=51 format=3 uid="uid://x737o50fwj3d"]
 
-[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_dav1i"]
+[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_dav1i"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard/base.gd" id="2_6x1ws"]
 [ext_resource type="Texture2D" uid="uid://cp140jf2lg47" path="res://sprites/other/Evil Wizard/Attack.png" id="3_64wxn"]
 [ext_resource type="Texture2D" uid="uid://bycxyjmu5o5mt" path="res://sprites/other/Evil Wizard/Move.png" id="3_aqs0a"]
@@ -288,7 +288,7 @@ bg_color = Color(0.6, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luqh5"]
 bg_color = Color(2.16588e-06, 0.59681, 0.305655, 1)
 
-[node name="Npc" instance=ExtResource("1_dav1i")]
+[node name="BossWizard" instance=ExtResource("1_dav1i")]
 script = ExtResource("2_6x1ws")
 speed = 200
 heal_animation = false

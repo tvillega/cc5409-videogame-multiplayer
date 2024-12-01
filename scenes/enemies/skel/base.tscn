@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bgcn2wkxkl8ko"]
 
-[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_7jups"]
+[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_7jups"]
 [ext_resource type="Texture2D" uid="uid://bk4ipn2lhvgl7" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Run/Run-Sheet.png" id="3_7a5ni"]
 [ext_resource type="Texture2D" uid="uid://btvoogmixvgj8" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Rogue/Idle/Idle-Sheet.png" id="3_81s3u"]
 [ext_resource type="Script" path="res://scenes/enemies/skel/base.gd" id="3_v70pq"]
@@ -150,7 +150,7 @@ size = Vector2(25, 34.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntor2"]
 size = Vector2(65, 77)
 
-[node name="Npc" instance=ExtResource("1_7jups")]
+[node name="SkelRoge" instance=ExtResource("1_7jups")]
 script = ExtResource("3_v70pq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]

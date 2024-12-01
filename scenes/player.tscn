@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://bscbkoey4tyml" path="res://sfx/Run/Stone Run 1.wav" id="2_kb0yf"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
-[ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/pause_menu.tscn" id="3_cr3x1"]
+[ext_resource type="PackedScene" uid="uid://cns1h8exunjpj" path="res://scenes/ui/pause_menu.tscn" id="3_cr3x1"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_je07h"]
 [ext_resource type="AudioStream" uid="uid://bj35cbfi2efjm" path="res://sfx/Run/Stone Run 2.wav" id="3_umreo"]
 [ext_resource type="Texture2D" uid="uid://byumbjif0fwk8" path="res://sprites/Tank/Idle/Down.png" id="3_xm7dh"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://uvxjnasfit7t" path="res://sfx/Run/Water Chain Land.wav" id="5_ih04s"]
 [ext_resource type="AudioStream" uid="uid://b74abyg103omj" path="res://sfx/Impact/Sword Impact Hit 2.wav" id="6_x2o6s"]
 [ext_resource type="PackedScene" uid="uid://bvaq6d4egho2q" path="res://scenes/ordnance/guns/pistol.tscn" id="7_06oed"]
-[ext_resource type="PackedScene" uid="uid://dme23w7vghl8a" path="res://scenes/Stats.tscn" id="9_47mgd"]
+[ext_resource type="PackedScene" uid="uid://dme23w7vghl8a" path="res://components/stats.tscn" id="9_47mgd"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
 [ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://cmolchx0spusu"]
 
-[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_q0yo4"]
+[ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_q0yo4"]
 [ext_resource type="Script" path="res://scenes/enemies/orc/base.gd" id="2_c7sbn"]
 [ext_resource type="Texture2D" uid="uid://euwoxyjtr4tp" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Run/Run-Sheet.png" id="3_efkcf"]
 [ext_resource type="Texture2D" uid="uid://dc7hv4q8xy13x" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png" id="3_pgfmi"]
@@ -150,7 +150,7 @@ size = Vector2(25, 39.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffpns"]
 size = Vector2(65, 90)
 
-[node name="Npc" instance=ExtResource("1_q0yo4")]
+[node name="OrcRoge" instance=ExtResource("1_q0yo4")]
 script = ExtResource("2_c7sbn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" index="0"]
