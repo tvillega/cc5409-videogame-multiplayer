@@ -1,2 +1,2 @@
-class_name Skel
-extends Npc
+class_name SkelMage
+extends EnemyMage
