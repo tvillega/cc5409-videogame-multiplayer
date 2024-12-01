@@ -1,12 +1,12 @@
 [gd_scene load_steps=29 format=3 uid="uid://cmolchx0spusu"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_q0yo4"]
-[ext_resource type="Script" path="res://scenes/enemies/orc.gd" id="2_c7sbn"]
+[ext_resource type="Script" path="res://scenes/enemies/orc/base.gd" id="2_c7sbn"]
 [ext_resource type="Texture2D" uid="uid://euwoxyjtr4tp" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Run/Run-Sheet.png" id="3_efkcf"]
 [ext_resource type="Texture2D" uid="uid://dc7hv4q8xy13x" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Idle/Idle-Sheet.png" id="3_pgfmi"]
 [ext_resource type="Texture2D" uid="uid://b65dhss3yvj83" path="res://sprites/art/Enemy/Orc Crew/Orc - Rogue/Death/Death-Sheet.png" id="4_mnnue"]
-[ext_resource type="Script" path="res://scenes/enemies/orc_hurtbox.gd" id="5_fo756"]
-[ext_resource type="Script" path="res://scenes/enemies/orc_hitbox.gd" id="6_kj7v6"]
+[ext_resource type="Script" path="res://scenes/enemies/orc/hurtbox.gd" id="5_fo756"]
+[ext_resource type="Script" path="res://scenes/enemies/orc/hitbox.gd" id="6_kj7v6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sw407"]
 atlas = ExtResource("3_efkcf")

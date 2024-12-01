@@ -1,15 +1,15 @@
 [gd_scene load_steps=51 format=3 uid="uid://x737o50fwj3d"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://scenes/npc.tscn" id="1_dav1i"]
-[ext_resource type="Script" path="res://scenes/enemies/boss_wizard.gd" id="2_6x1ws"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_wizard/base.gd" id="2_6x1ws"]
 [ext_resource type="Texture2D" uid="uid://cp140jf2lg47" path="res://sprites/other/Evil Wizard/Attack.png" id="3_64wxn"]
 [ext_resource type="Texture2D" uid="uid://bycxyjmu5o5mt" path="res://sprites/other/Evil Wizard/Move.png" id="3_aqs0a"]
 [ext_resource type="Texture2D" uid="uid://drubdbs4ky3b5" path="res://sprites/other/Evil Wizard/Death.png" id="4_4pb3j"]
 [ext_resource type="Texture2D" uid="uid://bnb82l2iejkn" path="res://sprites/other/Evil Wizard/Idle.png" id="5_vraam"]
-[ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hurtbox.gd" id="6_s5xf0"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_wizard/hurtbox.gd" id="6_s5xf0"]
 [ext_resource type="Texture2D" uid="uid://bp10xskwsx0dl" path="res://sprites/other/Evil Wizard/Take Hit.png" id="6_xcwyc"]
-[ext_resource type="Script" path="res://scenes/enemies/boss_wizard_hitbox.gd" id="7_tfvf4"]
-[ext_resource type="Script" path="res://scenes/enemies/boss_wizard_stats.gd" id="8_m0852"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_wizard/hitbox.gd" id="7_tfvf4"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_wizard/stats.gd" id="8_m0852"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1goc"]
 atlas = ExtResource("3_64wxn")

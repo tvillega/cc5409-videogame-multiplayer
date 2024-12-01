@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxdefg3qjp27a"]
 
-[ext_resource type="PackedScene" uid="uid://cmolchx0spusu" path="res://scenes/enemies/orc.tscn" id="1_rkaa7"]
+[ext_resource type="PackedScene" uid="uid://cmolchx0spusu" path="res://scenes/enemies/orc/base.tscn" id="1_rkaa7"]
 
 [sub_resource type="GDScript" id="GDScript_pph6s"]
 script/source = "extends MultiplayerSpawner
