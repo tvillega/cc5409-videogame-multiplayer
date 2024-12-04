@@ -142,7 +142,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7s4g4"]
-radius = 118.004
+radius = 513.344
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bs3p"]
 size = Vector2(25, 34.5)
@@ -166,11 +166,8 @@ scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_k0xoy")
 animation = &"idle"
 frame = 1
-frame_progress = 0.239579
+frame_progress = 0.494893
 speed_scale = 1.5
-
-[node name="DetectionArea" parent="." index="2"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 light_mask = 2
@@ -195,4 +192,13 @@ script = ExtResource("7_ofaqr")
 position = Vector2(-3.5, -0.5)
 shape = SubResource("RectangleShape2D_ntor2")
 
+[node name="SpellTimer" type="Timer" parent="." index="6"]
+unique_name_in_owner = true
+autostart = true
+
+[node name="SpellShootingPoint" type="Marker2D" parent="." index="7"]
+unique_name_in_owner = true
+position = Vector2(0, -46.815)
+
 [connection signal="animation_finished" from="Sprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="SpellTimer" to="." method="_on_spell_timer_timeout"]

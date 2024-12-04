@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://otqq6gbe5ycx"]
 
-[ext_resource type="Script" path="res://scenes/enemies/skel/spawner.gd" id="1_i3f1q"]
-[ext_resource type="PackedScene" uid="uid://bgcn2wkxkl8ko" path="res://scenes/enemies/skel/base.tscn" id="2_fyuxf"]
+[ext_resource type="Script" path="res://scenes/enemies/skel_mage/spawner.gd" id="1_i3f1q"]
+[ext_resource type="PackedScene" uid="uid://da4xqe65hswac" path="res://scenes/enemies/skel_mage/base.tscn" id="2_fyuxf"]
 
-[node name="SkelSpawner" type="MultiplayerSpawner"]
-_spawnable_scenes = PackedStringArray("res://scenes/enemies/skel.tscn")
+[node name="SkelMageSpawner" type="MultiplayerSpawner"]
 spawn_path = NodePath("SkelSpawnerMarker")
 script = ExtResource("1_i3f1q")
 enemy_scene = ExtResource("2_fyuxf")
