@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var foot_sound_3: AudioStream
 @export var dash_sound: AudioStream
 @export var damage_sound: AudioStream
+@export var death_sound: AudioStream
 @export var equipment : Array[Node2D]
 
 var player
@@ -156,6 +157,7 @@ func take_damage(damage: int) -> void:
 
 @rpc("any_peer", "call_local", "reliable")	
 func playerDeath() -> void:
+	AudioManager.play_stream(death_sound, -15)
 	velocity = Vector2(0, 0)
 	dead = true
 	animated_sprite_2d.play("death")
