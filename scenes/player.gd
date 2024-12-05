@@ -35,6 +35,7 @@ var paused = false
 @onready var stats = $Stats
 #@onready var hud: HUD = $HUD
 @onready var health_bar = $HealthBar
+@onready var Role: Label = $Role
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var sound_timer: Timer = $SoundTimer
 @onready var swap_timer: Timer = $SwapTimer
@@ -44,9 +45,11 @@ var movement_orient = ""
 
 func _ready() ->  void:	
 	stats.health_changed.connect(_on_health_changed)
+	stats.role_changed.connect(_on_role_changed)
 	#hud.health = stats.health
 	#hud.visible = is_multiplayer_authority()
 	health_bar.value = stats.health
+	Role.text = str(stats.role)
 	#swap_progress_bar.visible = is_multiplayer_authority()
 	#health_bar.visible = not is_multiplayer_authority()
 	swap_progress_bar.visible = is_multiplayer_authority()
@@ -109,11 +112,11 @@ func setup(player_data: Statics.PlayerData) -> void:
 	pistol.set_multiplayer_authority(player_data.id)
 	shotgun.set_multiplayer_authority(player_data.id)
 	if player_data.role == Statics.Role.MEDIC: 
-		
+		Role.text = "Medic"
 		player_data.equipment.append(pistol)	
 		remove_child(shotgun)
 	else: 
-	
+		Role.text = "Tank"
 		player_data.equipment.append(shotgun)
 		remove_child(pistol)
 		
@@ -173,8 +176,14 @@ func _on_health_changed(health) -> void:
 	health_bar.value = health
 	if health < 0:
 		pass
+		
+func _on_role_changed(role) -> void:
+	#hud.health = health
+	if role == 1:
+		Role.text = "Tank"
+	else:
+		Role.text = "Medic"
 	
-
 func _on_timer_timeout() -> void:
 	var my_player_data = Game.get_current_player()
 	if my_player_data.role == Statics.Role.MEDIC:
@@ -227,9 +236,10 @@ func swap_equipment() -> void:
 		var my_role = my_player_data.role
 		my_player_data.equipment = other_player_data.equipment
 		my_player_data.role = other_player_data.role
-		
+		stats.role = my_player_data.role
 		other_player_data.equipment = my_equipment
 		other_player_data.role = my_role
+		other_player_data.local_scene.stats.role = my_role
 		remove_equipment()
 		other_player_data.local_scene.remove_equipment()
 		update_equipment()

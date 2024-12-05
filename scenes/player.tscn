@@ -209,6 +209,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nxi3p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xfimg")
 show_percentage = false
 
+[node name="Role" type="Label" parent="."]
+offset_left = -19.0
+offset_top = 39.0
+offset_right = 21.0
+offset_bottom = 62.0
+
 [node name="Label" type="Label" parent="."]
 offset_left = -58.0
 offset_top = -93.0

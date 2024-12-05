@@ -7,7 +7,6 @@ extends EnemyMage
 
 func _ready() -> void:
 	super._ready()
-	timer.timeout.connect(_on_spell_timer_timeout)
 	timer.start()
 	%SpellShootingPoint.global_position += Vector2(1,1)
 	
