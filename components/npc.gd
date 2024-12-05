@@ -77,6 +77,7 @@ func set_target_remote(target_path):
 ##
 ## This functions are called through signals by other entities
 ##
+@rpc("any_peer", "call_local", "reliable")
 func take_damage(damage: int):
 	# Avoid sending text twice
 	stats.health -= damage

@@ -145,7 +145,8 @@ func pauseMenu():
 		
 	
 	paused = !paused
-	
+
+@rpc("any_peer", "call_local", "reliable")	
 func take_damage(damage: int) -> void:
 	#notify_take_damage.rpc_id(get_multiplayer_authority(), damage)
 	stats.health -= damage

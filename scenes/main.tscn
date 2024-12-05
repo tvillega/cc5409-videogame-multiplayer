@@ -424,7 +424,6 @@ position = Vector2(1536, 1558)
 [node name="EnemiesSpawner" type="Node2D" parent="."]
 
 [node name="SkelSpawner" parent="EnemiesSpawner" instance=ExtResource("7_v6k6p")]
-_spawnable_scenes = PackedStringArray()
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelSpawner" index="0"]
 position = Vector2(1317, 1419)
