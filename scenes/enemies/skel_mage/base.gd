@@ -1,6 +1,8 @@
 class_name SkelMage
 extends EnemyMage
 
+@export var npc_death: AudioStream
+
 @onready var timer = %SpellTimer
 
 func _ready() -> void:
@@ -11,6 +13,13 @@ func _ready() -> void:
 	
 func _physics_process(delta):
 	pass
+	
+@rpc("any_peer", "call_local", "reliable")	
+func npcDeath() -> void:
+	AudioManager.play_stream(npc_death, -15, randf_range(0.8, 1.2))
+	velocity = Vector2(0, 0)
+	dead = true
+	_animated_sprite.play("death")
 
 func _on_spell_timer_timeout() -> void:
 	if target:
