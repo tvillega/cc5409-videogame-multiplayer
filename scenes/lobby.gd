@@ -2,6 +2,7 @@ extends MarginContainer
 
 @export var lobby_player_scene: PackedScene
 const credits_scene = preload("res://scenes/ui/credits.tscn")
+const how_to_play_scene = preload("res://scenes/ui/how_to_play.tscn")
 
 # { id: true }
 var status = { 1 : false }
@@ -20,18 +21,11 @@ var _menu_stack: Array[Control] = []
 @onready var tank: Button = %Tank
 @onready var medic: Button = %Medic
 @onready var back_ready: Button = %BackReady
-@onready var next_1: Button = %Next1
-@onready var back_to_main_2: Button = %BackToMain2
-@onready var next_2: Button = %Next2
-@onready var back_to_main_3: Button = %BackToMain3
-@onready var back_to_main_4: Button = %BackToMain4
+@onready var back_to_main: Button = %BackToMain
 @onready var ready_toggle: Button = %Ready
 @onready var menus: MarginContainer = %Menus
 @onready var main_menu = %MainMenu
 @onready var start_menu = %StartMenu
-@onready var how_to_play_1 = %HowToPlay1
-@onready var how_to_play_2 = %HowToPlay2
-@onready var how_to_play_3 = %HowToPlay3
 @onready var join_menu = %JoinMenu
 @onready var ready_menu = %ReadyMenu
 @onready var players = %Players
@@ -61,17 +55,12 @@ func _ready():
 	
 	host.pressed.connect(_on_host_pressed)
 	join.pressed.connect(_on_join_pressed)
+	back_to_main.pressed.connect(func(): _go_to_menu(main_menu))
 	
 	confirm_join.pressed.connect(_on_confirm_join_pressed)
 	
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
-	back_to_main_2.pressed.connect(func(): _go_to_menu(main_menu))
-	back_to_main_3.pressed.connect(func(): _go_to_menu(main_menu))
-	back_to_main_4.pressed.connect(func(): _go_to_menu(main_menu))
-	
-	next_1.pressed.connect(func(): _go_to_menu(how_to_play_2))
-	next_2.pressed.connect(func(): _go_to_menu(how_to_play_3))
 	
 	tank.pressed.connect(func(): Game.set_current_player_role(Statics.Role.TANK))
 	medic.pressed.connect(func(): Game.set_current_player_role(Statics.Role.MEDIC))
@@ -111,10 +100,14 @@ func _on_credits_pressed() -> void:
 		var path = credits_scene.get_path()
 		get_tree().change_scene_to_file(path)
 	else:
-		get_tree().quit()
+		pass
 
 func _on_how_to_play_pressed() -> void:
-	_go_to_menu(how_to_play_1)
+	if how_to_play_scene != null:
+		var path = how_to_play_scene.get_path()
+		get_tree().change_scene_to_file(path)
+	else:
+		pass
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

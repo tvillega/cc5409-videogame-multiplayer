@@ -36,7 +36,6 @@ layout_mode = 2
 
 [node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
@@ -64,6 +63,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join"
+
+[node name="BackToMain" type="Button" parent="PanelContainer/Menus/StartMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back To Main Menu"
 
 [node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
@@ -165,6 +169,7 @@ text = "5"
 
 [node name="MainMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 
@@ -202,107 +207,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
 text = "Exit"
-
-[node name="HowToPlay1" type="VBoxContainer" parent="PanelContainer/Menus"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay1"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 35
-text = "How to Play"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay1"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
-layout_mode = 2
-text = "Cómo jugar - Parte 1 (Controles?)"
-horizontal_alignment = 1
-
-[node name="Next1" type="Button" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Next"
-
-[node name="BackToMain2" type="Button" parent="PanelContainer/Menus/HowToPlay1/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Back To Menu"
-
-[node name="HowToPlay2" type="VBoxContainer" parent="PanelContainer/Menus"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay2"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 35
-text = "How to Play"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay2"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
-layout_mode = 2
-text = "Cómo jugar - Parte 2"
-horizontal_alignment = 1
-
-[node name="Next2" type="Button" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Next"
-
-[node name="BackToMain3" type="Button" parent="PanelContainer/Menus/HowToPlay2/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Back To Menu"
-
-[node name="HowToPlay3" type="VBoxContainer" parent="PanelContainer/Menus"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay3"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.987266, 0, 0.131661, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 35
-text = "How to Play"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/Menus/HowToPlay3"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/Menus/HowToPlay3/HBoxContainer"]
-layout_mode = 2
-text = "Cómo jugar - Parte 3"
-horizontal_alignment = 1
-
-[node name="BackToMain4" type="Button" parent="PanelContainer/Menus/HowToPlay3/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 30
-text = "Back To Menu"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PanelContainer"]
 
