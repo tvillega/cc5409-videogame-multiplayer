@@ -157,7 +157,7 @@ func take_damage(damage: int) -> void:
 
 @rpc("any_peer", "call_local", "reliable")	
 func playerDeath() -> void:
-	AudioManager.play_stream(death_sound, -15)
+	AudioManager.play_stream(death_sound, -15, randf_range(0.9, 1.1))
 	velocity = Vector2(0, 0)
 	dead = true
 	animated_sprite_2d.play("death")

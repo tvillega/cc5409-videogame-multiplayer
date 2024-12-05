@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var player = null
 @export var dead = false
 @export var magic_attack: AudioStream
+@export var death_sound: AudioStream
 var target: Node2D
 
 @onready var detection_area: Area2D = $DetectionArea 
@@ -49,6 +50,7 @@ func _process(_delta):
 
 @rpc("any_peer", "call_local", "reliable")	
 func npcDeath() -> void:
+	AudioManager.play_stream(death_sound, -15, randf_range(0.7, 1.3))
 	velocity = Vector2(0, 0)
 	dead = true
 	_animated_sprite.play("death")
