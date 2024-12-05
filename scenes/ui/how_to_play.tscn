@@ -46,44 +46,151 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 35
 text = "How To Play"
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
+[node name="TextContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmd5s")
+
+[node name="Content" type="MarginContainer" parent="TextContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer/Content"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.454902, 0.894118, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+text = "W, A, S, D - Up, down, left and right."
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+text = "Spacebar -  Dash while you move."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+text = "Left Click - Shoots current weapon."
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+text = "Q - Activates/Accepts swapping role
+with buddy.
+"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="TextContainer/Content/VBoxContainer"]
+layout_mode = 2
+text = "Number Keys (1 - 9) - Change weapon
+(If you have one)."
+horizontal_alignment = 1
+
+[node name="TextContainer2" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_kmd5s")
 
-[node name="Content" type="MarginContainer" parent="PanelContainer2"]
+[node name="Content" type="MarginContainer" parent="TextContainer2"]
 layout_mode = 2
 
-[node name="Parts" type="VBoxContainer" parent="PanelContainer2/Content"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer2/Content"]
 layout_mode = 2
 
-[node name="Sections" type="HBoxContainer" parent="PanelContainer2/Content/Parts"]
+[node name="Label" type="Label" parent="TextContainer2/Content/VBoxContainer"]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/Content/Parts/Sections"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer2/Content/Parts/Sections/VBoxContainer"]
-layout_mode = 2
-text = "CONTROLS"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer2/Content/Parts/Sections"]
-layout_mode = 2
-
-[node name="Label2" type="Label" parent="PanelContainer2/Content/Parts/Sections/VBoxContainer2"]
-layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.803922, 0.0941176, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
 text = "TOTEMS"
+horizontal_alignment = 1
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer2/Content/Parts/Sections"]
+[node name="Label2" type="Label" parent="TextContainer2/Content/VBoxContainer"]
+layout_mode = 2
+text = "Around the map, you will find Totems that can
+upgrade your equipment."
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="TextContainer2/Content/VBoxContainer"]
+layout_mode = 2
+text = "These Totems can only be opened if you have a 
+certain role."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="TextContainer2/Content/VBoxContainer"]
+layout_mode = 2
+text = "Upgrades include new weapons or new abilities like
+self-healing."
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="TextContainer2/Content/VBoxContainer"]
+layout_mode = 2
+text = "Be sure to find them as soon as you can!"
+horizontal_alignment = 1
+
+[node name="TextContainer3" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmd5s")
+
+[node name="Content" type="MarginContainer" parent="TextContainer3"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="PanelContainer2/Content/Parts/Sections/VBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextContainer3/Content"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="TextContainer3/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.988235, 0, 0.133333, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
 text = "ENEMIES"
+horizontal_alignment = 1
 
-[node name="BackToMenu" type="Button" parent="PanelContainer2/Content/Parts"]
+[node name="Label2" type="Label" parent="TextContainer3/Content/VBoxContainer"]
+layout_mode = 2
+text = "There's enemies all around the map!"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="TextContainer3/Content/VBoxContainer"]
+layout_mode = 2
+text = "Rogues and Mage types appear
+every once in a while."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="TextContainer3/Content/VBoxContainer"]
+layout_mode = 2
+text = "But there's a huge boss in the middle
+that can regenerate himself!"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="TextContainer3/Content/VBoxContainer"]
+layout_mode = 2
+text = "Try to kill them all before they
+kill you!"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_kmd5s")
+
+[node name="Content" type="MarginContainer" parent="ButtonContainer"]
+layout_mode = 2
+
+[node name="BackToMenu" type="Button" parent="ButtonContainer/Content"]
 layout_mode = 2
 text = "Back To Main Menu"
 
-[connection signal="pressed" from="PanelContainer2/Content/Parts/BackToMenu" to="." method="_on_back_to_menu_pressed"]
+[connection signal="pressed" from="ButtonContainer/Content/BackToMenu" to="." method="_on_back_to_menu_pressed"]
