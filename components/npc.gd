@@ -14,6 +14,12 @@ var target: Node2D
 
 func _process(_delta):
 	# Change sprite depending on what is going on
+	
+	if velocity.x < 0:
+		_animated_sprite.flip_h = true
+	elif velocity.x > 0:
+		_animated_sprite.flip_h = false
+	
 	if stats.health <= 0 and !dead: 
 		npcDeath.rpc()
 	elif target:

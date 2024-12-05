@@ -347,79 +347,117 @@ polygon = PackedVector2Array(140, 173, 140, 467, 1012, 466, 1011, 174, 725, 172,
 [node name="Skel" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(1804, 1087)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel2" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(2737, 1675)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel3" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(3003, 1331)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel4" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(3067, 1697)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel5" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(2764, 1416)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel6" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(1572, 2516)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel7" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(1515, 2094)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel8" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(880, 2706)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Skel9" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(2541, 2732)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(1329, 821)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc2" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(348, 1496)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc3" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(830, 1381)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc4" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(473, 1239)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc5" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(621, 1602)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc6" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(1789, 2208)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc7" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(1294, 2278)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc8" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(587, 2599)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="Orc9" parent="EnemiesStatic" instance=ExtResource("5_gnl5r")]
 position = Vector2(2329, 2570)
 speed = 200
+acceleration = 500
+dead = false
 
 [node name="BossesStatic" type="Node2D" parent="."]
 
 [node name="Wizard" parent="BossesStatic" instance=ExtResource("6_tepof")]
 position = Vector2(1536, 1558)
+acceleration = 500
+dead = false
 
 [node name="EnemiesSpawner" type="Node2D" parent="."]
 

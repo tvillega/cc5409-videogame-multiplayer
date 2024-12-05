@@ -10,7 +10,15 @@ func _ready() -> void:
 	%SpellShootingPoint.global_position += Vector2(1,1)
 	
 func _physics_process(delta):
-	pass
+	
+	if target:
+		var direction = global_position.direction_to(target.global_position)
+		var my_velocity = velocity.move_toward(direction * speed, acceleration * delta)
+	
+		if my_velocity.x < 0:
+			_animated_sprite.flip_h = true
+		elif my_velocity.x > 0:
+			_animated_sprite.flip_h = false
 
 func _on_spell_timer_timeout() -> void:
 	if target:
