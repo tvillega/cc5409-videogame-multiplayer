@@ -142,7 +142,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7s4g4"]
-radius = 513.344
+radius = 110.496
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bs3p"]
 size = Vector2(25, 34.5)
@@ -198,7 +198,7 @@ autostart = true
 
 [node name="SpellShootingPoint" type="Marker2D" parent="." index="7"]
 unique_name_in_owner = true
-position = Vector2(0, -46.815)
+position = Vector2(-2, 1)
 
 [connection signal="animation_finished" from="Sprite/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="SpellTimer" to="." method="_on_spell_timer_timeout"]

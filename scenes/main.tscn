@@ -436,21 +436,8 @@ position = Vector2(1821, 1407)
 [node name="SkelMageSpawner" parent="EnemiesSpawner" instance=ExtResource("10_euiuf")]
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner" index="0"]
-position = Vector2(2298, 1513)
-
-[node name="SkelMageSpawner2" parent="EnemiesSpawner" instance=ExtResource("10_euiuf")]
-
-[node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner2" index="0"]
-position = Vector2(300, 1200)
-
-[node name="SkelMageSpawner3" parent="EnemiesSpawner" instance=ExtResource("10_euiuf")]
-spawn_path = NodePath("../SkelMageSpawner/SkelSpawnerMarker")
-
-[node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner3" index="0"]
-position = Vector2(300, 1700)
+position = Vector2(500, 1513)
 
 [editable path="EnemiesSpawner/SkelSpawner"]
 [editable path="EnemiesSpawner/OrcSpawner"]
 [editable path="EnemiesSpawner/SkelMageSpawner"]
-[editable path="EnemiesSpawner/SkelMageSpawner2"]
-[editable path="EnemiesSpawner/SkelMageSpawner3"]
