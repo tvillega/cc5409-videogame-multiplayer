@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://x737o50fwj3d"]
+[gd_scene load_steps=54 format=3 uid="uid://x737o50fwj3d"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_dav1i"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard/base.gd" id="2_6x1ws"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cp140jf2lg47" path="res://sprites/other/Evil Wizard/Attack.png" id="3_64wxn"]
 [ext_resource type="Texture2D" uid="uid://bycxyjmu5o5mt" path="res://sprites/other/Evil Wizard/Move.png" id="3_aqs0a"]
 [ext_resource type="Texture2D" uid="uid://drubdbs4ky3b5" path="res://sprites/other/Evil Wizard/Death.png" id="4_4pb3j"]
+[ext_resource type="AudioStream" uid="uid://c5pumcleh0lyi" path="res://sfx/Magic/Healing.wav" id="4_ep3gy"]
 [ext_resource type="AudioStream" uid="uid://chgxswjft13uq" path="res://sfx/Death/monster/deathr.wav" id="4_p6m0q"]
 [ext_resource type="Texture2D" uid="uid://bnb82l2iejkn" path="res://sprites/other/Evil Wizard/Idle.png" id="5_vraam"]
 [ext_resource type="Script" path="res://scenes/enemies/boss_wizard/hurtbox.gd" id="6_s5xf0"]
@@ -294,6 +295,7 @@ bg_color = Color(2.16588e-06, 0.59681, 0.305655, 1)
 script = ExtResource("2_6x1ws")
 speed = 200
 magic_attack = ExtResource("3_8oeas")
+magic_healing = ExtResource("4_ep3gy")
 death_sound = ExtResource("4_p6m0q")
 heal_animation = false
 

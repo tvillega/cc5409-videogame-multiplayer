@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var player = null
 @export var dead = false
 @export var magic_attack: AudioStream
+@export var magic_healing: AudioStream
 @export var death_sound: AudioStream
 var target: Node2D
 
@@ -35,6 +36,9 @@ func _process(_delta):
 
 		if !dead:
 			if heal_animation:
+				if sound_timer.time_left <= 0:
+					AudioManager.play_stream(magic_healing, -15)
+					sound_timer.start(0.9)
 				velocity = Vector2(0,0)
 				_animated_sprite.play("heal")
 			elif distance < 100 and !heal_animation:

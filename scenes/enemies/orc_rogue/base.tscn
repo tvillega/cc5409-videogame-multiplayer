@@ -185,6 +185,7 @@ shape = SubResource("RectangleShape2D_kxivr")
 
 [node name="Hitbox" parent="." index="4"]
 script = ExtResource("6_kj7v6")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0.5, 17)
