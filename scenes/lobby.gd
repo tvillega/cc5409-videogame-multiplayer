@@ -1,6 +1,7 @@
 extends MarginContainer
 
 @export var lobby_player_scene: PackedScene
+const credits_scene = preload("res://scenes/ui/credits.tscn")
 
 # { id: true }
 var status = { 1 : false }
@@ -19,7 +20,6 @@ var _menu_stack: Array[Control] = []
 @onready var tank: Button = %Tank
 @onready var medic: Button = %Medic
 @onready var back_ready: Button = %BackReady
-@onready var back_to_main_1: Button = %BackToMain1
 @onready var next_1: Button = %Next1
 @onready var back_to_main_2: Button = %BackToMain2
 @onready var next_2: Button = %Next2
@@ -29,7 +29,6 @@ var _menu_stack: Array[Control] = []
 @onready var menus: MarginContainer = %Menus
 @onready var main_menu = %MainMenu
 @onready var start_menu = %StartMenu
-@onready var credits_menu = %CreditsMenu
 @onready var how_to_play_1 = %HowToPlay1
 @onready var how_to_play_2 = %HowToPlay2
 @onready var how_to_play_3 = %HowToPlay3
@@ -67,7 +66,6 @@ func _ready():
 	
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
-	back_to_main_1.pressed.connect(func(): _go_to_menu(main_menu))
 	back_to_main_2.pressed.connect(func(): _go_to_menu(main_menu))
 	back_to_main_3.pressed.connect(func(): _go_to_menu(main_menu))
 	back_to_main_4.pressed.connect(func(): _go_to_menu(main_menu))
@@ -109,7 +107,11 @@ func _on_start_pressed() -> void:
 	_go_to_menu(start_menu)
 	
 func _on_credits_pressed() -> void:
-	_go_to_menu(credits_menu)
+	if credits_scene != null:
+		var path = credits_scene.get_path()
+		get_tree().change_scene_to_file(path)
+	else:
+		get_tree().quit()
 
 func _on_how_to_play_pressed() -> void:
 	_go_to_menu(how_to_play_1)

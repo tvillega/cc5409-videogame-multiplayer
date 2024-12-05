@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=42 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="AudioStream" uid="uid://bscbkoey4tyml" path="res://sfx/Run/Stone Run 1.wav" id="2_kb0yf"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://uvxjnasfit7t" path="res://sfx/Run/Water Chain Land.wav" id="5_ih04s"]
 [ext_resource type="AudioStream" uid="uid://b74abyg103omj" path="res://sfx/Impact/Sword Impact Hit 2.wav" id="6_x2o6s"]
 [ext_resource type="PackedScene" uid="uid://bvaq6d4egho2q" path="res://scenes/ordnance/guns/pistol.tscn" id="7_06oed"]
+[ext_resource type="AudioStream" uid="uid://ehhqck1iobrc" path="res://sfx/Death/player/deathh.wav" id="7_bpvk7"]
 [ext_resource type="PackedScene" uid="uid://dme23w7vghl8a" path="res://components/stats.tscn" id="9_47mgd"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
 [ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
@@ -197,6 +198,7 @@ foot_sound_2 = ExtResource("3_umreo")
 foot_sound_3 = ExtResource("4_7knye")
 dash_sound = ExtResource("5_ih04s")
 damage_sound = ExtResource("6_x2o6s")
+death_sound = ExtResource("7_bpvk7")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -25.0

@@ -7,11 +7,14 @@ extends CharacterBody2D
 @export var acceleration = 500
 @export var player = null
 @export var dead = false
+@export var magic_attack: AudioStream
+@export var death_sound: AudioStream
 var target: Node2D
 
 @onready var detection_area: Area2D = $DetectionArea 
 @onready var stats : BossWizardStats = $BossStats
 @onready var health_bar = $HealthBar
+@onready var sound_timer: Timer = $SoundTimer
 
 @export var heal_animation = false
 
@@ -35,6 +38,9 @@ func _process(_delta):
 				velocity = Vector2(0,0)
 				_animated_sprite.play("heal")
 			elif distance < 100 and !heal_animation:
+				if sound_timer.time_left <= 0:
+					AudioManager.play_stream(magic_attack, -10)
+					sound_timer.start(2)
 				_animated_sprite.play("attack")
 			else:
 				_animated_sprite.play("chase")
@@ -44,6 +50,7 @@ func _process(_delta):
 
 @rpc("any_peer", "call_local", "reliable")	
 func npcDeath() -> void:
+	AudioManager.play_stream(death_sound, -15, randf_range(0.7, 1.3))
 	velocity = Vector2(0, 0)
 	dead = true
 	_animated_sprite.play("death")

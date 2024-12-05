@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5hlio8c61ede"]
+
+[ext_resource type="Script" path="res://scenes/ui/credits.gd" id="1_m66eg"]
+[ext_resource type="Texture2D" uid="uid://c2e0swtt2f0u5" path="res://images/test.jpg" id="3_3yhwr"]
+
+[node name="Credits" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m66eg")
+title_color = Color(0.987627, 0, 0.121272, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_3yhwr")
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 2
+expand = true
+
+[node name="CreditsContainer" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Line" type="Label" parent="CreditsContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -23.0
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 25
