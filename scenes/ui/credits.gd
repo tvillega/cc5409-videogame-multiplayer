@@ -37,11 +37,11 @@ var credits = [
 	],[
 		"Team Members",
 		"",
-		"Ignacio Arros",
+		"Ignacio Arros - @Overplay45",
 		"",
-		"Martín Reyes",
+		"Martín Reyes - @MortanTheAndal",
 		"",
-		"Tomás Villegas"
+		"Tomás Villegas - @tomas.villegas.m"
 	],[
 		"Art",
 		"",
