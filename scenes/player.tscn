@@ -190,7 +190,7 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0.686574, 0.413082, 1.92523e-07, 1)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 12
+collision_mask = 14
 script = ExtResource("2_nlo8y")
 foot_sound_1 = ExtResource("2_kb0yf")
 foot_sound_2 = ExtResource("3_umreo")
@@ -241,7 +241,7 @@ scale = Vector2(1.4, 1.4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2gy4f")
-animation = &"idle_down"
+animation = &"walk_down"
 
 [node name="Pistol" parent="." instance=ExtResource("7_06oed")]
 

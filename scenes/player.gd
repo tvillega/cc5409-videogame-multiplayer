@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var dash_sound: AudioStream
 @export var damage_sound: AudioStream
 @export var equipment : Array[Node2D]
+@export var healing_factor = 20
 
 var player
 var id
@@ -129,12 +130,8 @@ func setup(player_data: Statics.PlayerData) -> void:
 
 @rpc("authority", "call_remote", "unreliable")
 func test():
-	Debug.log("player: %s directions: %s" % [player.name, movement_orient])
+	pass
 
-@rpc("authority", "call_local")
-func send_position(pos: Vector2, vel: Vector2) -> void:
-	position = lerp(position, pos, 0.5)
-	velocity = lerp(velocity, vel, 0.5)
 
 func pauseMenu():
 	if paused:
@@ -175,7 +172,7 @@ func _on_health_changed(health) -> void:
 func _on_timer_timeout() -> void:
 	var my_player_data = Game.get_current_player()
 	if my_player_data.role == Statics.Role.MEDIC:
-		stats.health += 10
+		stats.health += healing_factor
 		
 func foot_fx() -> void:
 	var luck = randi_range(1, 3)
@@ -251,3 +248,11 @@ func remove_equipment()-> void:
 func spawn_current_equipment() -> void:
 	for eq in equipment:
 		add_child(eq)
+
+func expand_equipment(item: Node2D )->void:
+	var my_player_data = Game.get_player(id)
+	item.set_multiplayer_authority(id)
+	my_player_data.equipment.append(item)
+	equipment.append(item)
+	spawn_current_equipment()
+	

@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://6l2m41prduvs"]
+
+[ext_resource type="PackedScene" uid="uid://bmw3lirqkhgf2" path="res://scenes/ordnance/chests/Chest.tscn" id="1_dl3p1"]
+[ext_resource type="Script" path="res://scenes/ordnance/chests/tank_chest.gd" id="2_kjs7f"]
+[ext_resource type="Texture2D" uid="uid://bey0mlrvjng0l" path="res://sprites/chest/Chests.png" id="3_01svh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fv32"]
+atlas = ExtResource("3_01svh")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kp263"]
+atlas = ExtResource("3_01svh")
+region = Rect2(0, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8vv5"]
+atlas = ExtResource("3_01svh")
+region = Rect2(48, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tsfg"]
+atlas = ExtResource("3_01svh")
+region = Rect2(96, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vadab"]
+atlas = ExtResource("3_01svh")
+region = Rect2(144, 96, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1f0d"]
+atlas = ExtResource("3_01svh")
+region = Rect2(192, 96, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgylo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fv32")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kp263")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8vv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tsfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vadab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1f0d")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="TankChest" instance=ExtResource("1_dl3p1")]
+script = ExtResource("2_kjs7f")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pgylo")
+animation = &"open"
+
+[node name="Label" parent="." index="2"]
+visible = false
+text = "Tank Chest
+Press F"
