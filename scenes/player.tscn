@@ -182,7 +182,7 @@ animations = [{
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kjipn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4qml"]
-size = Vector2(28, 29)
+size = Vector2(28, 40)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwrwf"]
 bg_color = Color(0, 0, 0, 1)
@@ -261,7 +261,7 @@ script = ExtResource("9_qugai")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 light_mask = 2
 visibility_layer = 2
-position = Vector2(0, 7.5)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_d4qml")
 
 [node name="Shotgun" parent="." instance=ExtResource("10_ot44p")]
