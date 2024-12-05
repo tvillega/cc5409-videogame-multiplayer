@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://da4xqe65hswac"]
+[gd_scene load_steps=30 format=3 uid="uid://da4xqe65hswac"]
 
 [ext_resource type="PackedScene" uid="uid://c4w8b3lq6a1gs" path="res://components/npc.tscn" id="1_u2l1u"]
 [ext_resource type="Script" path="res://scenes/enemies/skel_mage/base.gd" id="2_c4h8f"]
 [ext_resource type="Texture2D" uid="uid://i40dhs57h6hf" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Run/Run-Sheet.png" id="3_futya"]
+[ext_resource type="AudioStream" uid="uid://cq4ax3gsumfe5" path="res://sfx/Death/monster/deathb.wav" id="3_nepjs"]
 [ext_resource type="Texture2D" uid="uid://plsqo4adoamr" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Death/Death-Sheet.png" id="4_h2utx"]
 [ext_resource type="Texture2D" uid="uid://brajet3gdqkbr" path="res://sprites/art/Enemy/Skeleton Crew/Skeleton - Mage/Idle/Idle-Sheet.png" id="5_e4opf"]
 [ext_resource type="Script" path="res://scenes/enemies/skel_rogue/hurtbox.gd" id="6_owe41"]
@@ -152,6 +153,7 @@ size = Vector2(65, 77)
 
 [node name="SkelMage" instance=ExtResource("1_u2l1u")]
 script = ExtResource("2_c4h8f")
+npc_death = ExtResource("3_nepjs")
 speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
