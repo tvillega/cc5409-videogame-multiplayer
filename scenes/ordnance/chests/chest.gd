@@ -20,6 +20,7 @@ func _input(event: InputEvent)-> void:
 	if player_inside and event.is_action_pressed("test"):
 		pick()
 		
+		
 func _process(delta: float) -> void:
 	if picked:
 		animated_sprite_2d.play("open")
@@ -34,9 +35,15 @@ func setup(sp_marks: Node2D)->void:
 
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite_2d.animation == "open":
-		spawn()
+		picked=false
+		animated_sprite_2d.play("default")
+		
 		
 func spawn()->void:
+	spawn_local.rpc_id(1)
+
+@rpc("any_peer","reliable","call_local")
+func spawn_local()-> void:
 	var rand = randi()% 3
 	while rand == last_place:
 		Debug.log("sameplace")
@@ -49,7 +56,7 @@ func spawn()->void:
 func pick() -> void:
 	Debug.log("pick")
 	picked = !picked
-
+	spawn()
 
 func _on_body_entered(body: Node)-> void:
 	var player = body as Player
@@ -61,3 +68,7 @@ func _on_body_exited(body: Node)-> void:
 	if body == player_inside:
 		player_inside = null
 		label.hide()
+
+
+func _on_multiplayer_synchronizer_delta_synchronized() -> void:
+	animated_sprite_2d.play()

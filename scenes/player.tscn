@@ -264,6 +264,7 @@ shape = SubResource("RectangleShape2D_d4qml")
 
 [node name="Shotgun" parent="." instance=ExtResource("10_ot44p")]
 position = Vector2(-3, -3)
+can_shoot = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
