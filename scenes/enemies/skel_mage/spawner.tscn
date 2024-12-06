@@ -11,5 +11,5 @@ enemy_scene = ExtResource("2_fyuxf")
 [node name="SkelSpawnerMarker" type="Marker2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 12.0
 autostart = true

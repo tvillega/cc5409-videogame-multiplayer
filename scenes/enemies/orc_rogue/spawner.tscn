@@ -33,5 +33,5 @@ enemy_scene = ExtResource("1_rkaa7")
 [node name="Marker2D" type="Marker2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 12.0
 autostart = true
