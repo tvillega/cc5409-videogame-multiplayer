@@ -79,7 +79,7 @@ var credits = [
 		"",
 		"https://lilyberry03.itch.io/particle"
 	],[
-		"Music",
+		"Musical arrangements",
 		"",
 		"Martín Reyes"
 	],[
