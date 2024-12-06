@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmw3lirqkhgf2"]
+
+[ext_resource type="Script" path="res://scenes/ordnance/chests/chest.gd" id="1_v3nda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uhoo"]
+size = Vector2(42, 29)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_auysy"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Chest" type="Area2D"]
+position = Vector2(-6, -11)
+collision_layer = 2
+script = ExtResource("1_v3nda")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12.9375, 2)
+scale = Vector2(1.52679, 1.5625)
+animation = &""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, 10.5)
+shape = SubResource("RectangleShape2D_5uhoo")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -71.0
+offset_top = -77.0
+offset_right = 72.0
+offset_bottom = -2.0
+text = "Chest
+Press F"
+horizontal_alignment = 1
+
+[node name="SpawnMarkers" type="Node2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_auysy")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="delta_synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_delta_synchronized"]

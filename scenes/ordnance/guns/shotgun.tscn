@@ -16,6 +16,7 @@ properties/0/replication_mode = 1
 [node name="Shotgun" instance=ExtResource("1_164wv")]
 script = ExtResource("2_ko73q")
 fire_sound = ExtResource("3_rphnf")
+can_shoot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 texture_filter = 1

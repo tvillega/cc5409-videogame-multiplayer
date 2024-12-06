@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://ba32dvcivmgp"]
+
+[ext_resource type="PackedScene" uid="uid://bmw3lirqkhgf2" path="res://scenes/ordnance/chests/Chest.tscn" id="1_o1suw"]
+[ext_resource type="Script" path="res://scenes/ordnance/chests/medic_chest.gd" id="2_0r0sg"]
+[ext_resource type="Texture2D" uid="uid://bey0mlrvjng0l" path="res://sprites/chest/Chests.png" id="2_8drp8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rebch"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(0, 192, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edqaa"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(0, 224, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2urtd"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(49, 224, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e6uh"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(98, 224, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usshr"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(147, 224, 42, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsv4w"]
+atlas = ExtResource("2_8drp8")
+region = Rect2(196, 224, 42, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ekl6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rebch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edqaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2urtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e6uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usshr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsv4w")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="MedicChest" instance=ExtResource("1_o1suw")]
+script = ExtResource("2_0r0sg")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6ekl6")
+animation = &"open"
+frame = 4
+frame_progress = 1.0
+
+[node name="Label" parent="." index="2"]
+text = "Medic Chest
+Press F"
