@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=14 format=4 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://bkvdcld6sp21y" path="res://scenes/player.tscn" id="2_p1kmq"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://x737o50fwj3d" path="res://scenes/enemies/boss_wizard/base.tscn" id="6_tepof"]
 [ext_resource type="PackedScene" uid="uid://bg01dxdaaqdct" path="res://scenes/enemies/skel_rogue/spawner.tscn" id="7_v6k6p"]
 [ext_resource type="PackedScene" uid="uid://ba32dvcivmgp" path="res://scenes/ordnance/chests/medic_chest.tscn" id="11_cv22t"]
+[ext_resource type="AudioStream" uid="uid://j3vrulph58vo" path="res://sfx/music/ShooterBuddies.wav" id="11_kftwu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvtnr"]
 texture = ExtResource("3_j2850")
@@ -458,6 +459,11 @@ script = null
 
 [node name="Marker2D" parent="EnemiesSpawner/OrcSpawner" index="0"]
 position = Vector2(1821, 1407)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_kftwu")
+volume_db = -59.602
+autoplay = true
 
 [editable path="EnemiesSpawner/SkelSpawner"]
 [editable path="EnemiesSpawner/OrcSpawner"]
