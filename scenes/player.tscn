@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=42 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="AudioStream" uid="uid://bscbkoey4tyml" path="res://sfx/Run/Stone Run 1.wav" id="2_kb0yf"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dme23w7vghl8a" path="res://components/stats.tscn" id="9_47mgd"]
 [ext_resource type="Script" path="res://components/hurtbox.gd" id="9_qugai"]
 [ext_resource type="PackedScene" uid="uid://ccqvdui01goii" path="res://scenes/ordnance/guns/shotgun.tscn" id="10_ot44p"]
+[ext_resource type="Script" path="res://scenes/weapons.gd" id="16_3bf1k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxi3p"]
 bg_color = Color(0.6, 0, 0, 1)
@@ -197,6 +198,8 @@ foot_sound_2 = ExtResource("3_umreo")
 foot_sound_3 = ExtResource("4_7knye")
 dash_sound = ExtResource("5_ih04s")
 damage_sound = ExtResource("6_x2o6s")
+pistol_scene = ExtResource("7_06oed")
+shotgun_scene = ExtResource("10_ot44p")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -25.0
@@ -243,8 +246,6 @@ scale = Vector2(1.4, 1.4)
 sprite_frames = SubResource("SpriteFrames_2gy4f")
 animation = &"walk_down"
 
-[node name="Pistol" parent="." instance=ExtResource("7_06oed")]
-
 [node name="Stats" parent="." instance=ExtResource("9_47mgd")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -261,10 +262,6 @@ light_mask = 2
 visibility_layer = 2
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_d4qml")
-
-[node name="Shotgun" parent="." instance=ExtResource("10_ot44p")]
-position = Vector2(-3, -3)
-can_shoot = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -285,6 +282,9 @@ show_percentage = false
 [node name="SwapTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="weapons" type="Node2D" parent="."]
+script = ExtResource("16_3bf1k")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

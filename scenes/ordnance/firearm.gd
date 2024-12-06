@@ -10,11 +10,19 @@ func setup(id: int)-> void:
 
 func _process(delta: float) -> void:
 	if is_multiplayer_authority():
+		
 		global_rotation = global_position.direction_to(get_global_mouse_position()).angle()
 	
 	if firearm_synchronizer.shooting:
 		shoot()
 	firearm_synchronizer.shooting = false
+	
+	if firearm_synchronizer.spam:
+		if has_method("spam"):
+			spam()
+			
+func spam()->void:
+	pass
 	
 func shoot() -> void:
 	pass

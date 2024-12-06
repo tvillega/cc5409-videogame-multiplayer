@@ -1,17 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyec2ac35a0fv"]
+[gd_scene load_steps=8 format=3 uid="uid://dyec2ac35a0fv"]
 
 [ext_resource type="PackedScene" uid="uid://cent7k5p32b1j" path="res://scenes/ordnance/firearm.tscn" id="1_xq0vx"]
 [ext_resource type="Texture2D" uid="uid://dm11o23uru4a2" path="res://sprites/Weapons/TheUltimateWeaponsPack_Sheet.png" id="2_jn678"]
 [ext_resource type="Script" path="res://scenes/ordnance/guns/machine_gun.gd" id="2_s1pgg"]
+[ext_resource type="AudioStream" uid="uid://dcob0wf7f6t3x" path="res://sfx/Guns/762x39 Single Isolated WAV.wav" id="3_lcub7"]
 [ext_resource type="PackedScene" uid="uid://usmt8e8tagoy" path="res://scenes/input_synchronizer.tscn" id="3_qvjmr"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n26ke"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_mcins"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="MachineGun" instance=ExtResource("1_xq0vx")]
 script = ExtResource("2_s1pgg")
-fire_sound = null
+fire_sound = ExtResource("3_lcub7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite" index="0"]
 texture = ExtResource("2_jn678")
@@ -32,3 +36,6 @@ replication_config = SubResource("SceneReplicationConfig_mcins")
 [node name="MGShootingPoint" type="Marker2D" parent="." index="5"]
 unique_name_in_owner = true
 position = Vector2(-18, 1)
+
+[node name="Timer" parent="." index="6"]
+wait_time = 0.15

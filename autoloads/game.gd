@@ -10,6 +10,8 @@ signal upnp_completed(error)
 @export var multiplayer_test = false
 @export var test_players: Array[PlayerDataResource] = [] # first one is server
 @export var use_upnp = false
+@export var weapons : Array[PackedScene]
+
 
 # [ {id: int, name: string, rol: Rol} ]
 var players: Array[Statics.PlayerData] = []

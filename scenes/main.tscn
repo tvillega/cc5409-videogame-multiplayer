@@ -331,6 +331,17 @@ gizmo_extents = 100.0
 position = Vector2(2800, 317)
 gizmo_extents = 100.0
 
+[node name="ChestSpawnMarkersTank" type="Node2D" parent="."]
+
+[node name="CM1" type="Marker2D" parent="ChestSpawnMarkersTank"]
+position = Vector2(908, 372)
+
+[node name="CM2" type="Marker2D" parent="ChestSpawnMarkersTank"]
+position = Vector2(2373, 395)
+
+[node name="CM3" type="Marker2D" parent="ChestSpawnMarkersTank"]
+position = Vector2(713, 1772)
+
 [node name="ChestSpawnMarkers" type="Node2D" parent="."]
 
 [node name="CM1" type="Marker2D" parent="ChestSpawnMarkers"]

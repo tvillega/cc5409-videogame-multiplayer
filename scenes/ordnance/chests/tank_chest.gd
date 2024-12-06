@@ -8,8 +8,10 @@ extends Chest
 func _ready() -> void:
 	super._ready()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func pick()->void:
-	if player_inside and player_inside.player.role == Statics.Role.TANK:
-		player_inside.expand_equipment(machinegun_scene.instantiate())
-		super.pick()
+func pick(player_id: int )->void:
+	Debug.log("pick")
+	var player_inside = Game.get_player(player_id).local_scene
+	if player_inside.player.role == Statics.Role.TANK:
+		player_inside.expand_equipment(2)
+	super.pick(player_id)
 		

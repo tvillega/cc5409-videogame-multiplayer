@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 func _input(event: InputEvent)-> void:
 	if player_inside and event.is_action_pressed("test"):
-		pick()
+		pick.rpc(player_inside.id)
 		
 		
 func _process(delta: float) -> void:
@@ -52,9 +52,9 @@ func spawn_local()-> void:
 	Debug.log("respawning at: %s	" % (rand+1))
 	
 	global_position = spawn_markers.get_child(rand).global_position
-	
-func pick() -> void:
-	Debug.log("pick")
+
+@rpc("any_peer","call_local","reliable")	
+func pick(player_id:int) -> void:
 	picked = !picked
 	spawn()
 
