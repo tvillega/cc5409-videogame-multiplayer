@@ -468,22 +468,43 @@ position = Vector2(1536, 1558)
 
 [node name="SkelSpawner" parent="EnemiesSpawner" instance=ExtResource("7_v6k6p")]
 _spawnable_scenes = PackedStringArray("res://scenes/enemies/skel_rogue/base.tscn")
-spawn_limit = 1
+spawn_limit = 2
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelSpawner" index="0"]
 position = Vector2(1317, 1419)
 
+[node name="SkelSpawnerMarker5" type="Marker2D" parent="EnemiesSpawner/SkelSpawner"]
+position = Vector2(2446, 1738)
+
+[node name="SkelSpawnerMarker6" type="Marker2D" parent="EnemiesSpawner/SkelSpawner"]
+position = Vector2(899, 1251)
+
+[node name="SkelSpawnerMarker7" type="Marker2D" parent="EnemiesSpawner/SkelSpawner"]
+position = Vector2(1543, 3317)
+
 [node name="OrcSpawner" parent="EnemiesSpawner" instance=ExtResource("3_ij1my")]
-spawn_limit = 1
+spawn_limit = 2
 
 [node name="Marker2D" parent="EnemiesSpawner/OrcSpawner" index="0"]
 position = Vector2(1821, 1407)
 
+[node name="Marker2D2" type="Marker2D" parent="EnemiesSpawner/OrcSpawner"]
+position = Vector2(2431, 1472)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemiesSpawner/OrcSpawner"]
+position = Vector2(2615, 2578)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemiesSpawner/OrcSpawner"]
+position = Vector2(782, 2582)
+
 [node name="SkelMageSpawner" parent="EnemiesSpawner" instance=ExtResource("10_euiuf")]
-spawn_limit = 1
+spawn_limit = 2
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner" index="0"]
 position = Vector2(500, 1513)
+
+[node name="SkelSpawnerMarker2" type="Marker2D" parent="EnemiesSpawner/SkelMageSpawner"]
+position = Vector2(1575, 142)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_t66y7")
