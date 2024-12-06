@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=15 format=4 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://bkvdcld6sp21y" path="res://scenes/player.tscn" id="2_p1kmq"]
@@ -386,7 +386,6 @@ collision_mask = 25
 polygon = PackedVector2Array(140, 173, 140, 467, 1012, 466, 1011, 174, 725, 172, 724, 130, 1197, 132, 1197, 1467, 1060, 1468, 1059, 1072, 193, 1070, 189, 1857, 1059, 1862, 1060, 1574, 1195, 1571, 1196, 3051, 773, 3051, 772, 2966, 1060, 2961, 1059, 2333, 426, 2332, 431, 2961, 671, 2966, 669, 3051, 620, 3051, 619, 3158, 1197, 3156, 1195, 3252, 1390, 3252, 1385, 3541, 1686, 3539, 1685, 3250, 1923, 3253, 1923, 3155, 2500, 3152, 2499, 3051, 2451, 3050, 2452, 2965, 2740, 2965, 2737, 2327, 2109, 2331, 2110, 2960, 2347, 2962, 2347, 3053, 1924, 3048, 1925, 1573, 2108, 1570, 2110, 1855, 3269, 1859, 3268, 1069, 2110, 1068, 2110, 1470, 1926, 1467, 1924, 131, 2444, 133, 2446, 173, 2107, 170, 2109, 469, 2980, 465, 2978, 174, 2549, 173, 2547, 27, 573, 29, 573, 129, 620, 130, 622, 174, 151, 170, 206, -281, 2897, -271, 3233, 139, 3536, 1179, 3437, 2221, 2958, 3266, 1879, 3857, 224, 3579, -1, 2456, -80, 965, 157, 105, 151, 170, 140, 173)
 
 [node name="EnemiesStatic" type="Node2D" parent="."]
-visible = false
 
 [node name="Skel" parent="EnemiesStatic" instance=ExtResource("4_rgulj")]
 position = Vector2(1804, 1087)
@@ -461,7 +460,6 @@ position = Vector2(2329, 2570)
 speed = 200
 
 [node name="BossesStatic" type="Node2D" parent="."]
-visible = false
 
 [node name="Wizard" parent="BossesStatic" instance=ExtResource("6_tepof")]
 position = Vector2(1536, 1558)
@@ -469,8 +467,7 @@ position = Vector2(1536, 1558)
 [node name="EnemiesSpawner" type="Node2D" parent="."]
 
 [node name="SkelSpawner" parent="EnemiesSpawner" instance=ExtResource("7_v6k6p")]
-_spawnable_scenes = PackedStringArray()
-script = null
+_spawnable_scenes = PackedStringArray("res://scenes/enemies/skel_rogue/base.tscn")
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelSpawner" index="0"]
 position = Vector2(1317, 1419)
@@ -484,6 +481,7 @@ position = Vector2(1821, 1407)
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner" index="0"]
 position = Vector2(500, 1513)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_t66y7")
 volume_db = -25.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bkvdcld6sp21y"]
+[gd_scene load_steps=43 format=3 uid="uid://bkvdcld6sp21y"]
 
 [ext_resource type="AudioStream" uid="uid://bscbkoey4tyml" path="res://sfx/Run/Stone Run 1.wav" id="2_kb0yf"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="2_nlo8y"]
