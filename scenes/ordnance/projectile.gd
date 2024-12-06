@@ -8,15 +8,15 @@ func _physics_process(delta : float) -> void:
 	position += direction * 1000 * delta
 	
 @rpc("call_local")
-func send_position(pos: Vector2, vel: Vector2) -> void:
+func send_position(pos: Vector2, _vel: Vector2) -> void:
 	position = lerp(position, pos, 0.5) 
 
 #Colision con murallas
-func _on_body_entered(body: Node2D) -> void: 
+func _on_body_entered(_body: Node2D) -> void: 
 	queue_free() 
 
 #Colision con enemigos
-func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	var hitbox = body as Hitbox
 	if hitbox:
 		hitbox.damage_dealt.connect(_on_damage_dealt)

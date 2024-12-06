@@ -250,15 +250,15 @@ func swap_equipment() -> void:
 		Debug.log("weapon eq size %s" % weapons.equipment.size())
 		#var my_equipment = my_player_data.equipment
 		var my_role = my_player_data.role
-		stats.role = my_player_data.role
-		other_player_data.local_scene.stats.role = my_role
 		var my_weapons_equipment = weapons.equipment
 		remove_equipment()
 		other_player_data.local_scene.remove_equipment()
 		weapons.equipment = other_player_data.local_scene.weapons.equipment
 		my_player_data.role = other_player_data.role
+		stats.role = my_player_data.role
 		other_player_data.local_scene.weapons.equipment = my_weapons_equipment
 		other_player_data.role = my_role
+		other_player_data.local_scene.stats.role = my_role
 		#other_player_data.equipment = my_equipment
 		
 		update_equipment.rpc(0)

@@ -8,7 +8,7 @@ func setup(id: int)-> void:
 	player_id = id
 	set_multiplayer_authority(id)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		
 		global_rotation = global_position.direction_to(get_global_mouse_position()).angle()

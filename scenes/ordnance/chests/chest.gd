@@ -5,6 +5,7 @@ extends Area2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var spawn_markers: Node2D = $SpawnMarkers
 
+@export var chest_sound: AudioStream
 
 var player_inside: Player
 var last_place: int
@@ -23,6 +24,7 @@ func _input(event: InputEvent)-> void:
 		
 func _process(delta: float) -> void:
 	if picked:
+		AudioManager.play_stream(chest_sound, -15)
 		animated_sprite_2d.play("open")
 		
 		picked = false

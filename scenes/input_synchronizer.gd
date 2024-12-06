@@ -8,7 +8,7 @@ extends MultiplayerSynchronizer
 @export var pause := false
 @export var spam := false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		directions = Input.get_vector("left", "right", "up", "down" )
 
