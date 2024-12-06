@@ -10,6 +10,7 @@ extends Node2D
 
 @onready var markers: Node2D = $PlayersSpawnMarker
 @onready var chest_spawn_markers: Node2D = $ChestSpawnMarkers
+@onready var chest_spawn_markers_tank: Node2D = $ChestSpawnMarkersTank
 
 func _ready() -> void:
 	var med_chest_inst = medic_chest_scene.instantiate()
@@ -17,7 +18,7 @@ func _ready() -> void:
 	chests.add_child(tank_chest_inst)
 	chests.add_child(med_chest_inst)
 	tank_chest_inst.setup(chest_spawn_markers)
-	med_chest_inst.setup(chest_spawn_markers)
+	med_chest_inst.setup(chest_spawn_markers_tank)
 	tank_chest_inst.spawn()
 	med_chest_inst.spawn()
 	for i in Game.players.size():

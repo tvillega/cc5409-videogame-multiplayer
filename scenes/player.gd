@@ -287,11 +287,7 @@ func expand_equipment(ide: int )->void:
 	var mg_inst = scene.instantiate()
 	mg_inst.setup(player.id)
 	weapons.equipment.append(mg_inst)
-	
 	update_equipment(weapons.equipment.size()-1)
-	#expand_equipment_local.rpc()
 
-#@rpc("any_peer","call_remote","reliable")
-#func expand_equipment_loca():
 	
 	

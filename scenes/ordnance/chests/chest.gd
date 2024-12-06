@@ -44,10 +44,10 @@ func spawn()->void:
 
 @rpc("any_peer","reliable","call_local")
 func spawn_local()-> void:
-	var rand = randi()% 3
+	var rand = randi()% 6
 	while rand == last_place:
 		Debug.log("sameplace")
-		rand = randi()% 3
+		rand = randi()% 6
 	last_place = rand
 	Debug.log("respawning at: %s	" % (rand+1))
 	
