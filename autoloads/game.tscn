@@ -18,6 +18,7 @@ role = 2
 
 [node name="Game" type="Node"]
 script = ExtResource("1_fmbhi")
+multiplayer_test = true
 test_players = Array[ExtResource("2_xaonh")]([SubResource("Resource_mpwv4"), SubResource("Resource_bvclh")])
 weapons = Array[PackedScene]([ExtResource("3_v0myb"), ExtResource("4_ghg7i"), ExtResource("5_hr6ka")])
 
