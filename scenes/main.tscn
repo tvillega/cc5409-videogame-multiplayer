@@ -468,16 +468,19 @@ position = Vector2(1536, 1558)
 
 [node name="SkelSpawner" parent="EnemiesSpawner" instance=ExtResource("7_v6k6p")]
 _spawnable_scenes = PackedStringArray("res://scenes/enemies/skel_rogue/base.tscn")
+spawn_limit = 1
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelSpawner" index="0"]
 position = Vector2(1317, 1419)
 
 [node name="OrcSpawner" parent="EnemiesSpawner" instance=ExtResource("3_ij1my")]
+spawn_limit = 1
 
 [node name="Marker2D" parent="EnemiesSpawner/OrcSpawner" index="0"]
 position = Vector2(1821, 1407)
 
 [node name="SkelMageSpawner" parent="EnemiesSpawner" instance=ExtResource("10_euiuf")]
+spawn_limit = 1
 
 [node name="SkelSpawnerMarker" parent="EnemiesSpawner/SkelMageSpawner" index="0"]
 position = Vector2(500, 1513)

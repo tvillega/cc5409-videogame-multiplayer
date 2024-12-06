@@ -198,7 +198,7 @@ func _on_role_changed(role) -> void:
 	
 func _on_timer_timeout() -> void:
 	var my_player_data = Game.get_current_player()
-	if my_player_data.role == Statics.Role.MEDIC:
+	if Role.text == "Medic":
 		stats.health += healing_factor
 		
 func foot_fx() -> void:
