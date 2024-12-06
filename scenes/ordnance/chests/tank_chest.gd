@@ -13,5 +13,5 @@ func pick(player_id: int )->void:
 	var player_inside = Game.get_player(player_id).local_scene
 	if player_inside.player.role == Statics.Role.TANK:
 		player_inside.expand_equipment(2)
-	super.pick(player_id)
+		super.pick(player_id)
 		
